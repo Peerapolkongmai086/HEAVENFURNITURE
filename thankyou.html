@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Success - Heaven Furniture</title>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+body { 
+    background: url("banner 2/bg.png") no-repeat fixed center; 
+    background-size: cover; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    margin: 0;
+    font-family: 'Prompt', sans-serif; 
+}
+
+.card { 
+    background: rgba(255, 255, 255, 0.95); 
+    padding: 60px 40px; 
+    border-radius: 35px; 
+    text-align: center; 
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15); 
+    width: 450px;
+    animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.icon-circle {
+    width: 100px;
+    height: 100px;
+    background: #e8f5e9; 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px auto;
+    box-shadow: 0 10px 20px rgba(76, 175, 80, 0.2);
+}
+
+.check-icon {
+    font-size: 50px; 
+    color: #4caf50;
+    animation: successScale 0.5s ease-in-out 0.3s forwards; 
+    transform: scale(0); 
+}
+
+@keyframes successScale {
+    0% { transform: scale(0); }
+    80% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+h1 {
+    color: #333;
+    font-size: 32px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.btn { 
+    background: #b5835a; 
+    color: white; 
+    padding: 15px 40px; 
+    text-decoration: none; 
+    border-radius: 50px; 
+    font-weight: bold;
+    font-size: 18px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(181, 131, 90, 0.4);
+}
+
+.btn:hover { 
+    background: #a0724e; 
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(181, 131, 90, 0.6);
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+    <div class="icon-circle">
+        <div class="check-icon">✓</div>
+    </div>
+    
+    <h1>สั่งซื้อเรียบร้อย!</h1>
+    <p>ทางเราได้รับข้อมูลการชำระเงินของคุณแล้ว<br>ขอบคุณที่ไว้วางใจ Heaven Furniture ครับ</p>
+    
+    <a href="Product.html" class="btn">กลับไปเลือกซื้อสินค้าต่อ</a>
+</div>
+
+</body>
+</html>
