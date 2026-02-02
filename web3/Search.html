@@ -1,0 +1,484 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Search - Heaven Furniture</title>
+
+<style>
+body{
+  background:url("../banner 2/bg.png") no-repeat fixed center;
+  background-size:cover;
+  margin:0;
+  font-family: 'Tahoma', sans-serif;
+}
+
+.wrapper{
+  max-width:1600px;
+  margin:0 auto;
+  text-align:center;
+}
+
+.top-banner{
+  border-radius:28px;
+  display:block;
+  margin:20px auto;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.top-banner:hover{
+  transform: translateY(-8px);
+  box-shadow:0 10px 20px rgba(0,0,0,.25);
+}
+
+.nav-menu{
+  margin:0 auto;
+}
+
+.nav-menu img{
+  border-radius:18px;
+  overflow:hidden;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.nav-menu img:hover{
+  transform: translateY(-6px);
+  box-shadow:0 6px 10px rgba(0,0,0,.25);
+}
+
+.search-section {
+  margin: 50px auto;
+  width: 800px;
+}
+
+.search-box {
+  display: flex;
+  background: white;
+  padding: 12px 25px;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 18px;
+}
+
+.search-btn {
+  background: #b5835a;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.search-btn:hover { background: #a0724e; }
+
+#search-results {
+  display: none;
+  width: 1534px;
+  margin: 40px auto;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding-bottom: 50px;
+}
+
+.product-card {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+  height: 480px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  display: none;
+  transition: 0.3s;
+}
+.product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+
+.img-box {
+  width: 100%;
+  height: 350px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-box img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.product-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(181, 131, 90, 0.96);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: 0.4s;
+  padding: 20px;
+  box-sizing: border-box;
+  gap: 15px;
+}
+
+.product-card:hover .product-overlay {
+  opacity: 1;
+}
+
+.product-desc {
+  font-size: 14px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  color: white;
+  text-align: center;
+}
+
+.btn-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px; 
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+  font-size: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+.btn-buy {
+  background: white;
+  color: #b5835a;
+}
+
+.btn-cart {
+  background: #333;
+  color: white;
+}
+
+.btn-fav {
+  background: #ff4d6d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 10px rgba(255, 77, 109, 0.4);
+  margin-top: 10px;
+}
+.btn-fav:hover {
+  transform: scale(1.15) rotate(10deg);
+  background: #ff2e43;
+}
+
+#miniCart { 
+  position: fixed; top: 20%; right: -340px; width: 300px; background: white; 
+  border-radius: 20px 0 0 20px; box-shadow: -5px 5px 20px rgba(0,0,0,0.2); 
+  padding: 20px; transition: .4s; z-index: 9999; border: 4px solid #28a745; border-right: none; 
+}
+#miniCart.show { right: 0; }
+</style>
+
+<script type="text/javascript">
+function MM_swapImgRestore(){var i,x,a=document.MM_sr;for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++)x.src=x.oSrc;}
+function MM_preloadImages(){var d=document;if(d.images){if(!d.MM_p)d.MM_p=new Array();
+var i,j=d.MM_p.length,a=MM_preloadImages.arguments;for(i=0;i<a.length;i++)
+if(a[i].indexOf("#")!=0){d.MM_p[j]=new Image;d.MM_p[j++].src=a[i];}}}
+function MM_findObj(n,d){var p,i,x;if(!d)d=document;if((p=n.indexOf("?"))>0&&parent.frames.length){
+d=parent.frames[n.substring(p+1)].document;n=n.substring(0,p);}
+if(!(x=d[n])&&d.all)x=d.all[n];for(i=0;!x&&i<d.forms.length;i++)x=d.forms[i][n];
+for(i=0;!x&&d.layers&&i<d.layers.length;i++)x=MM_findObj(n,d.layers[i].document);
+if(!x&&d.getElementById)x=d.getElementById(n);return x;}
+function MM_swapImage(){var i,j=0,x,a=MM_swapImage.arguments;document.MM_sr=new Array;
+for(i=0;i<(a.length-2);i+=3)
+if((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x;if(!x.oSrc)x.oSrc=x.src;x.src=a[i+2];}}
+
+function doSearch() {
+  var input = document.querySelector('.search-input').value.toLowerCase();
+  var cards = document.querySelectorAll('.product-card');
+  var resultsDiv = document.getElementById("search-results");
+  var hasResult = false;
+  cards.forEach(card => {
+    var productName = card.getAttribute('data-name').toLowerCase();
+    if (input !== "" && productName.includes(input)) { card.style.display = "block"; hasResult = true; }
+    else { card.style.display = "none"; }
+  });
+  if (hasResult) { resultsDiv.style.display = "block"; }
+  else { resultsDiv.style.display = "none"; alert("ไม่พบสินค้าที่ตรงกับการค้นหา"); }
+}
+
+function showNotify(name, price, img, title, color) {
+    let panel = document.getElementById("miniCart");
+    panel.style.borderColor = color;
+    panel.innerHTML = `
+    <h3 style="font-size:18px; color:${color}; margin-bottom:10px;">${title}</h3>
+    <div style="display:flex; gap:12px; align-items:center; text-align:left;">
+      <img src="${img}" width="75" style="border-radius:10px;">
+      <div>
+        <b style="font-size:14px; color:#333;">${name}</b><br>
+        <span style="color:#b5835a; font-weight:bold;">${price}</span>
+      </div>
+    </div>`;
+    panel.classList.add("show");
+    setTimeout(() => panel.classList.remove("show"), 2500);
+}
+
+function buyNow(name, price, img) {
+    let cleanPrice = price.toString().replace(/฿/g, '').replace(/,/g, '');
+    localStorage.setItem("checkoutItem", JSON.stringify({ name, price: cleanPrice, img }));
+    window.location.href = "payment.html";
+}
+
+function addToCart(name, price, img) {
+    let list = JSON.parse(localStorage.getItem("cart") || "[]");
+    let cleanPrice = price.toString().replace(/฿/g, '').replace(/,/g, '');
+    let found = list.find(p => p.name === name);
+    if(found) { found.qty += 1; } else { list.push({name, price: cleanPrice, img, qty:1}); }
+    localStorage.setItem("cart", JSON.stringify(list));
+    showNotify(name, price, img, "🛒 เพิ่มลงตะกร้าแล้ว", "#28a745");
+}
+
+function addToFavorite(name, price, img) {
+    let list = JSON.parse(localStorage.getItem("favorites") || "[]");
+    let cleanPrice = price.toString().replace(/฿/g, '').replace(/,/g, '');
+    if(!list.some(p => p.name === name)) {
+        list.push({name, price: cleanPrice, img});
+        localStorage.setItem("favorites", JSON.stringify(list));
+        showNotify(name, price, img, "❤️ เพิ่มในรายการโปรด", "#ff4d6d");
+    } else {
+        alert("สินค้านี้อยู่ในรายการโปรดแล้ว");
+    }
+}
+</script>
+</head>
+
+<body onLoad="MM_preloadImages('../banner 2/home1.1.png','../banner 2/home2.1.png','../banner 2/home3.1.png','../banner 2/home4.1.png','../banner 2/home6/1.png','../banner 2/home7/1.png','../banner 2/home8/1.png','../banner 2/home9/1.png','../banner 2/home10/1.png')">
+
+<div id="miniCart"></div>
+
+<div class="wrapper">
+
+<header>
+  <img class="top-banner" src="../bannerrrrrrrrrrrrrrrrrrrrrrrrr33/search.png" width="1605" height="200">
+</header>
+
+<table width="1534" border="0" class="nav-menu">
+<tr>
+<td width="155"><a href="index.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2','','../banner 2/home1.1.png',1)"><img src="../banner 2/home1.png" width="155" height="40" id="Image2"></a></td>
+<td width="155"><img src="../banner 2/home5.1.png" width="155" height="40"></td>
+<td width="155"><a href="Product.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image3','','../banner 2/home2.1.png',1)"><img src="../banner 2/home2.png" width="155" height="40" id="Image3"></a></td>
+<td width="155"><a href="Recommended products.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image5','','../banner 2/home3.1.png',1)"><img src="../banner 2/home3.png" width="155" height="40" id="Image5"></a></td>
+<td width="155"><a href="promotion.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image6','','../banner 2/home4.1.png',1)"><img src="../banner 2/home4.png" width="155" height="40" id="Image6"></a></td>
+<td width="155"><a href="Contact.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image7','','../banner 2/home6/1.png',1)"><img src="../banner 2/home6/2.png" width="155" height="40" id="Image7"></a></td>
+<td width="155"><a href="profile.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image8','','../banner 2/home7/1.png',1)"><img src="../banner 2/home7/2.png" width="155" height="40" id="Image8"></a></td>
+<td width="155"><a href="Favorites.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image9','','../banner 2/home8/1.png',1)"><img src="../banner 2/home8/2.png" width="155" height="40" id="Image9"></a></td>
+<td width="155"><a href="shopping cart.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image10','','../banner 2/home9/1.png',1)"><img src="../banner 2/home9/2.png" width="155" height="40" id="Image10"></a></td>
+<td width="75"><a href="payment.html" onMouseOver="MM_swapImage('Image11','','../banner 2/home10/1.png',1)" onMouseOut="MM_swapImgRestore()"><img src="../banner 2/home10/2.png" width="155" height="40" id="Image11"></a></td>
+</tr>
+</table>
+
+<div class="search-section">
+  <div class="search-box">
+    <input type="text" class="search-input" placeholder="พิมพ์ตัวอักษรเพื่อค้นหา...">
+    <button class="search-btn" onclick="doSearch()">ค้นหา</button>
+  </div>
+</div>
+
+<div id="search-results">
+  <div class="results-grid">
+    
+    <div class="product-card" data-name="Modern Lounge Chair">
+      <div class="img-box"><img src="../สินค้า/Modern Lounge Chair.png"></div>
+      <div style="padding:15px; background:white;">
+        <div style="font-weight:bold; font-size:18px;">Modern Lounge Chair</div>
+        <div style="color:#b5835a; font-size:22px; font-weight:bold;">฿9,900</div>
+      </div>
+      <div class="product-overlay">
+        <div class="product-desc">อาร์มแชร์ดีไซน์ทันสมัย บุด้วยผ้ากำมะหยี่นุ่มพิเศษ รองรับสรีระได้ดีเยี่ยมเพื่อการพักผ่อนอย่างแท้จริง</div>
+        <div class="btn-group">
+          <button class="btn btn-buy" onclick="buyNow('Modern Lounge Chair', '฿9,900', '../สินค้า/Modern Lounge Chair.png')">BUY</button>
+          <button class="btn btn-cart" onclick="addToCart('Modern Lounge Chair', '฿9,900', '../สินค้า/Modern Lounge Chair.png')">CART</button>
+        </div>
+        <button class="btn btn-fav" onclick="addToFavorite('Modern Lounge Chair', '฿9,900', '../สินค้า/Modern Lounge Chair.png')">❤</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-name="Vintage Cabinet">
+      <div class="img-box"><img src="../สินค้า/Vintage Cabinet.png"></div>
+      <div style="padding:15px; background:white;">
+        <div style="font-weight:bold; font-size:18px;">Vintage Cabinet</div>
+        <div style="color:#b5835a; font-size:22px; font-weight:bold;">฿7,200</div>
+      </div>
+      <div class="product-overlay">
+        <div class="product-desc">ตู้เก็บของไม้สไตล์วินเทจ งานฝีมือประณีต แข็งแรงทนทาน พร้อมลิ้นชักเก็บของอเนกประสงค์</div>
+        <div class="btn-group">
+          <button class="btn btn-buy" onclick="buyNow('Vintage Cabinet', '฿7,200', '../สินค้า/Vintage Cabinet.png')">BUY</button>
+          <button class="btn btn-cart" onclick="addToCart('Vintage Cabinet', '฿7,200', '../สินค้า/Vintage Cabinet.png')">CART</button>
+        </div>
+        <button class="btn btn-fav" onclick="addToFavorite('Vintage Cabinet', '฿7,200', '../สินค้า/Vintage Cabinet.png')">❤</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-name="Luxury Chandelier">
+      <div class="img-box"><img src="../สินค้า/Luxury Chandelier.png"></div>
+      <div style="padding:15px; background:white;">
+        <div style="font-weight:bold; font-size:18px;">Luxury Chandelier</div>
+        <div style="color:#b5835a; font-size:22px; font-weight:bold;">฿5,800</div>
+      </div>
+      <div class="product-overlay">
+        <div class="product-desc">โคมไฟระย้าดีไซน์หรูหรา เพิ่มความสว่างและระดับให้ห้องนั่งเล่นของคุณดูพรีเมียมยิ่งขึ้น</div>
+        <div class="btn-group">
+          <button class="btn btn-buy" onclick="buyNow('Luxury Chandelier', '฿5,800', '../สินค้า/Luxury Chandelier.png')">BUY</button>
+          <button class="btn btn-cart" onclick="addToCart('Luxury Chandelier', '฿5,800', '../สินค้า/Luxury Chandelier.png')">CART</button>
+        </div>
+        <button class="btn btn-fav" onclick="addToFavorite('Luxury Chandelier', '฿5,800', '../สินค้า/Luxury Chandelier.png')">❤</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-name="Marble Side Table">
+      <div class="img-box"><img src="../สินค้า/Marble Side Table.png"></div>
+      <div style="padding:15px; background:white;">
+        <div style="font-weight:bold; font-size:18px;">Marble Side Table</div>
+        <div style="color:#b5835a; font-size:22px; font-weight:bold;">฿3,200</div>
+      </div>
+      <div class="product-overlay">
+        <div class="product-desc">โต๊ะข้างเตียงท็อปหินอ่อน ขาเหล็กชุบทองกันสนิม ขนาดกะทัดรัดเหมาะสำหรับพื้นที่จำกัด</div>
+        <div class="btn-group">
+          <button class="btn btn-buy" onclick="buyNow('Marble Side Table', '฿3,200', '../สินค้า/Marble Side Table.png')">BUY</button>
+          <button class="btn btn-cart" onclick="addToCart('Marble Side Table', '฿3,200', '../สินค้า/Marble Side Table.png')">CART</button>
+        </div>
+        <button class="btn btn-fav" onclick="addToFavorite('Marble Side Table', '฿3,200', '../สินค้า/Marble Side Table.png')">❤</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-name="Cozy Rug Set">
+      <div class="img-box"><img src="../สินค้า/Cozy Rug Set.png"></div>
+      <div style="padding:15px; background:white;">
+        <div style="font-weight:bold; font-size:18px;">Cozy Rug Set</div>
+        <div style="color:#b5835a; font-size:22px; font-weight:bold;">฿2,500</div>
+      </div>
+      <div class="product-overlay">
+        <div class="product-desc">พรมปูพื้นขนสั้นดักฝุ่นง่าย สัมผัสนุ่มสบายเท้า ช่วยเพิ่มความอบอุ่นให้กับมุมโปรดในบ้าน</div>
+        <div class="btn-group">
+          <button class="btn btn-buy" onclick="buyNow('Cozy Rug Set', '฿2,500', '../สินค้า/Cozy Rug Set.png')">BUY</button>
+          <button class="btn btn-cart" onclick="addToCart('Cozy Rug Set', '฿2,500', '../สินค้า/Cozy Rug Set.png')">CART</button>
+        </div>
+        <button class="btn btn-fav" onclick="addToFavorite('Cozy Rug Set', '฿2,500', '../สินค้า/Cozy Rug Set.png')">❤</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-name="Wall Decor Art">
+      <div class="img-box"><img src="../สินค้า/Wall Decor Art.png"></div>
+      <div style="padding:15px; background:white;">
+        <div style="font-weight:bold; font-size:18px;">Wall Decor Art</div>
+        <div style="color:#b5835a; font-size:22px; font-weight:bold;">฿1,490</div>
+      </div>
+      <div class="product-overlay">
+        <div class="product-desc">ภาพตกแต่งผนังสไตล์แอบสแตรกต์ พร้อมกรอบรูปคุณภาพดี ช่วยสร้างแรงบันดาลใจในทุกวัน</div>
+        <div class="btn-group">
+          <button class="btn btn-buy" onclick="buyNow('Wall Decor Art', '฿1,490', '../สินค้า/Wall Decor Art.png')">BUY</button>
+          <button class="btn btn-cart" onclick="addToCart('Wall Decor Art', '฿1,490', '../สินค้า/Wall Decor Art.png')">CART</button>
+        </div>
+        <button class="btn btn-fav" onclick="addToFavorite('Wall Decor Art', '฿1,490', '../สินค้า/Wall Decor Art.png')">❤</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-name="Nordic Sofa">
+      <div class="img-box"><img src="../สินค้า/Nordic Sofa.png"></div>
+      <div style="padding:15px; background:white;">
+        <div style="font-weight:bold; font-size:18px;">Nordic Sofa</div>
+        <div style="color:#b5835a; font-size:22px; font-weight:bold;">฿12,900</div>
+      </div>
+      <div class="product-overlay">
+        <div class="product-desc">โซฟาสไตล์นอร์ดิก ดีไซน์เรียบหรู นุ่มสบาย เหมาะสำหรับห้องนั่งเล่นทันสมัย</div>
+        <div class="btn-group">
+          <button class="btn btn-buy" onclick="buyNow('Nordic Sofa', '฿12,900', '../สินค้า/Nordic Sofa.png')">BUY</button>
+          <button class="btn btn-cart" onclick="addToCart('Nordic Sofa', '฿12,900', '../สินค้า/Nordic Sofa.png')">CART</button>
+        </div>
+        <button class="btn btn-fav" onclick="addToFavorite('Nordic Sofa', '฿12,900', '../สินค้า/Nordic Sofa.png')">❤</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-name="Modern Wood Bed">
+      <div class="img-box"><img src="../สินค้า/Modern Wood Bed.png"></div>
+      <div style="padding:15px; background:white;">
+        <div style="font-weight:bold; font-size:18px;">Modern Wood Bed</div>
+        <div style="color:#b5835a; font-size:22px; font-weight:bold;">฿25,500</div>
+      </div>
+      <div class="product-overlay">
+        <div class="product-desc">เตียงไม้จริงสไตล์โมเดิร์น แข็งแรงทนทาน ให้ความรู้สึกอบอุ่นและพักผ่อนได้อย่างเต็มอิ่ม</div>
+        <div class="btn-group">
+          <button class="btn btn-buy" onclick="buyNow('Modern Wood Bed', '฿25,500', '../สินค้า/Modern Wood Bed.png')">BUY</button>
+          <button class="btn btn-cart" onclick="addToCart('Modern Wood Bed', '฿25,500', '../สินค้า/Modern Wood Bed.png')">CART</button>
+        </div>
+        <button class="btn btn-fav" onclick="addToFavorite('Modern Wood Bed', '฿25,500', '../สินค้า/Modern Wood Bed.png')">❤</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-name="Luxury Velvet Sofa">
+      <div class="img-box"><img src="../สินค้า/Luxury Velvet Sofa.png"></div>
+      <div style="padding:15px; background:white;">
+        <div style="font-weight:bold; font-size:18px;">Luxury Velvet Sofa</div>
+        <div style="color:#b5835a; font-size:22px; font-weight:bold;">฿12,000</div>
+      </div>
+      <div class="product-overlay">
+        <div class="product-desc">โซฟาผ้ากำมะหยี่สุดหรู สัมผัสนุ่มสบาย ยกระดับความพรีเมียมให้ห้องรับแขกของคุณ</div>
+        <div class="btn-group">
+          <button class="btn btn-buy" onclick="buyNow('Luxury Velvet Sofa', '฿12,000', '../สินค้า/Luxury Velvet Sofa.png')">BUY</button>
+          <button class="btn btn-cart" onclick="addToCart('Luxury Velvet Sofa', '฿12,000', '../สินค้า/Luxury Velvet Sofa.png')">CART</button>
+        </div>
+        <button class="btn btn-fav" onclick="addToFavorite('Luxury Velvet Sofa', '฿12,000', '../สินค้า/Luxury Velvet Sofa.png')">❤</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-name="Marble Coffee Table">
+      <div class="img-box"><img src="../สินค้า/Marble Coffee Table.png"></div>
+      <div style="padding:15px; background:white;">
+        <div style="font-weight:bold; font-size:18px;">Marble Coffee Table</div>
+        <div style="color:#b5835a; font-size:22px; font-weight:bold;">฿7,565</div>
+      </div>
+      <div class="product-overlay">
+        <div class="product-desc">โต๊ะกลางท็อปหินอ่อนแท้ ลวดลายสวยงามเป็นธรรมชาติ แข็งแรง และทำความสะอาดง่าย</div>
+        <div class="btn-group">
+          <button class="btn btn-buy" onclick="buyNow('Marble Coffee Table', '฿7,565', '../สินค้า/Marble Coffee Table.png')">BUY</button>
+          <button class="btn btn-cart" onclick="addToCart('Marble Coffee Table', '฿7,565', '../สินค้า/Marble Coffee Table.png')">CART</button>
+        </div>
+        <button class="btn btn-fav" onclick="addToFavorite('Marble Coffee Table', '฿7,565', '../สินค้า/Marble Coffee Table.png')">❤</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+</body>
+</html>
