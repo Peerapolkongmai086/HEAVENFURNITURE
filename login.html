@@ -175,24 +175,14 @@ function doLogin(){
   let inputPass = document.getElementById("loginPass").value;
 
   if(inputName.trim()=="" || inputPass.trim()==""){
-    alert("กรุณากรอกชื่อและรหัสผ่านให้ครบ");
-    return;
-  }
-
-  let savedName  = localStorage.getItem("username");
-  let savedPass  = localStorage.getItem("userpass");
-
-  if(!savedName || !savedPass){
-    alert("ยังไม่มีบัญชี กรุณาไปสมัครก่อน");
-    return;
-  }
-
-  if(inputName !== savedName || inputPass !== savedPass){
-    alert("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
+    alert("กรุณากรอกชื่อและรหัสผ่าน (ใส่อะไรก็ได้)");
     return;
   }
 
   localStorage.setItem("isLogin","true");
+  
+  localStorage.setItem("username", inputName); 
+
   alert("เข้าสู่ระบบสำเร็จ!");
   window.location.href = "profile.html";
 }
