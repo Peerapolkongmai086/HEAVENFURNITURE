@@ -62,7 +62,7 @@ body{
   position: relative;
   width: 180px;
   height: 180px;
-  margin: 0 auto 20px;
+  margin: 0 auto 30px; 
 }
 
 .avatar{
@@ -72,41 +72,8 @@ body{
   object-fit: cover;
   border: 4px solid #fff;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  cursor: pointer;
-  transition: all .3s ease;
   background-color: #f0f0f0;
-}
-
-.avatar:hover{
-  transform: scale(1.05);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
-  filter: brightness(0.95);
-}
-
-.avatar-overlay {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background: #333;
-    color: #fff;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    pointer-events: none;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-#fileInput{ display:none; }
-
-.small-hint {
-    font-size: 14px;
-    color: #888;
-    margin-bottom: 25px;
-    display: block;
+  
 }
 
 #showName {
@@ -260,10 +227,7 @@ function MM_swapImage(){
 
     <div class="avatar-container">
         <img id="avatar" class="avatar" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Profile Picture">
-        <div class="avatar-overlay"><i class="fas fa-camera"></i></div>
     </div>
-    <span class="small-hint">แตะที่รูปเพื่อเปลี่ยนโปรไฟล์</span>
-    <input type="file" id="fileInput" accept="image/*">
 
     <h2 id="showName">Guest User</h2>
 
@@ -300,7 +264,6 @@ window.addEventListener("load", function(){
   let name  = localStorage.getItem("username");
   let email = localStorage.getItem("useremail");
   let phone = localStorage.getItem("userphone");
-  let savedAvatar = localStorage.getItem("useravatar");
 
   let today = new Date();
   let thaiDate = today.toLocaleDateString("th-TH", {
@@ -310,38 +273,10 @@ window.addEventListener("load", function(){
   });
   document.getElementById("signupDate").innerText = thaiDate;
 
-  if(name){
-    document.getElementById("showName").innerText = name;
-  }
-
-  if(email){
-    document.getElementById("showEmail").innerText = email;
-  }
-
-  if(phone){
-    document.getElementById("showPhone").innerText = phone;
-  }
-
-  if(savedAvatar){
-    document.getElementById("avatar").src = savedAvatar;
-  }
+  if(name) document.getElementById("showName").innerText = name;
+  if(email) document.getElementById("showEmail").innerText = email;
+  if(phone) document.getElementById("showPhone").innerText = phone;
 });
-
-document.getElementById("avatar").onclick = function(){
-  document.getElementById("fileInput").click();
-};
-
-document.getElementById("fileInput").onchange = function(event){
-  const file = event.target.files[0];
-  if(!file) return;
-
-  const reader = new FileReader();
-  reader.onload = function(e){
-    document.getElementById("avatar").src = e.target.result;
-    localStorage.setItem("useravatar", e.target.result);
-  };
-  reader.readAsDataURL(file);
-};
 
 function logout(){
   localStorage.clear();   
