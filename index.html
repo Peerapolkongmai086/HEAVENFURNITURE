@@ -9,7 +9,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-
 body {
     background: url("banner 2/bg.png") no-repeat fixed center;
     background-size: cover;
@@ -30,6 +29,7 @@ body {
     margin: 20px auto;
     transition: transform .3s ease, box-shadow .3s ease;
 }
+
 .top-banner:hover {
     transform: translateY(-8px);
     box-shadow: 0 10px 20px rgba(0,0,0,.25);
@@ -62,7 +62,7 @@ body {
     position: relative;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     transition: all 0.3s ease;
-    height: 450px; 
+    height: 480px; 
     display: flex;
     flex-direction: column;
 }
@@ -88,11 +88,6 @@ body {
     max-height: 90%;
     object-fit: contain;
     mix-blend-mode: multiply; 
-    transition: transform 0.5s ease;
-}
-
-.product-card:hover .product-img {
-    transform: scale(1.1);
 }
 
 .overlay-actions {
@@ -101,40 +96,36 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); 
+    background: rgba(0, 0, 0, 0.5); 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 12px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    gap: 10px;
+    opacity: 1; 
     padding: 20px;
     box-sizing: border-box;
     text-align: center;
 }
 
-.product-card:hover .overlay-actions {
-    opacity: 1; 
-}
-
 .product-desc {
     color: white;
     font-size: 14px;
-    line-height: 1.5;
-    margin-bottom: 10px;
-    font-weight: 300;
+    line-height: 1.4;
+    margin-bottom: 5px;
+    font-weight: 400;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
 .action-btn {
     background: white;
     color: #333;
-    padding: 10px 20px;
+    padding: 8px 15px;
     border-radius: 30px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
     cursor: pointer;
-    width: 80%;
+    width: 85%;
     text-align: center;
     transition: 0.2s;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -148,12 +139,12 @@ body {
 .action-btn:hover { transform: scale(1.05); }
 
 .product-info {
-    padding: 20px;
+    padding: 15px 20px;
     text-align: left;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .product-name {
@@ -177,14 +168,13 @@ body {
     width: 100%;
     max-width: 1400px;
 }
+
 .contact-banner:hover {
     transform: scale(1.02);
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
-#miniCart { 
-    display: none;
-}
+#miniCart { display: none; }
 </style>
 
 <script type="text/javascript">
@@ -237,7 +227,6 @@ function addToFavorite(name, price, img){
 <div id="miniCart"></div>
 
 <div class="wrapper">
-
   <header>
     <img class="top-banner" src="bannerrrrrrrrrrrrrrrrrrrrrrrrr33/heaven furniture.png" width="1605" height="200">
   </header>
@@ -262,7 +251,6 @@ function addToFavorite(name, price, img){
     <div class="product-card">
       <div class="img-wrapper">
         <img class="product-img" src="สินค้า/โซฟาห้องนั่งเล่น.png" alt="โซฟาห้องนั่งเล่น">
-        
         <div class="overlay-actions">
             <div class="product-desc">โซฟาดีไซน์นอร์ดิก นั่งสบาย<br>เหมาะสำหรับห้องรับแขก</div>
             <div class="action-btn btn-buy" onclick="buyNow('โซฟาห้องนั่งเล่น','1999','สินค้า/โซฟาห้องนั่งเล่น.png')">ซื้อทันที</div>
@@ -279,7 +267,6 @@ function addToFavorite(name, price, img){
     <div class="product-card">
       <div class="img-wrapper">
         <img class="product-img" src="สินค้า/เก้าอี้โยก.png" alt="เก้าอี้โยก">
-
         <div class="overlay-actions">
             <div class="product-desc">เก้าอี้โยกไม้จริง แข็งแรง<br>ผ่อนคลายทุกอิริยาบถ</div>
             <div class="action-btn btn-buy" onclick="buyNow('เก้าอี้โยก','999','สินค้า/เก้าอี้โยก.png')">ซื้อทันที</div>
@@ -296,7 +283,6 @@ function addToFavorite(name, price, img){
     <div class="product-card">
       <div class="img-wrapper">
         <img class="product-img" src="สินค้า/เก้าอี้ไม้.png" alt="เก้าอี้ไม้">
-
         <div class="overlay-actions">
             <div class="product-desc">เก้าอี้ไม้สไตล์มินิมอล<br>เข้าได้กับทุกมุมบ้าน</div>
             <div class="action-btn btn-buy" onclick="buyNow('เก้าอี้ไม้','499','สินค้า/เก้าอี้ไม้.png')">ซื้อทันที</div>
@@ -313,7 +299,6 @@ function addToFavorite(name, price, img){
     <div class="product-card">
       <div class="img-wrapper">
         <img class="product-img" src="สินค้า/ตู้เสื้อผ้า.png" alt="ตู้เสื้อผ้า">
-
         <div class="overlay-actions">
             <div class="product-desc">ตู้เสื้อผ้าดีไซน์ทันสมัย<br>จุของได้เยอะ แข็งแรงทนทาน</div>
             <div class="action-btn btn-buy" onclick="buyNow('ตู้เสื้อผ้า','4990','สินค้า/ตู้เสื้อผ้า.png')">ซื้อทันที</div>
@@ -334,6 +319,5 @@ function addToFavorite(name, price, img){
   </a>
 
 </div>
-
 </body>
 </html>
