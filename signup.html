@@ -2,13 +2,12 @@
 <html lang="th">
 <head>
 <meta charset="utf-8">
-<title>สมัครสมาชิก - Heaven Furniture</title>
+<title>เข้าสู่ระบบ - Heaven Furniture</title>
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <style>
 body {
-   
     background: url("banner 2/bg.png") no-repeat fixed center;
     background-size: cover;
     margin: 0;
@@ -17,51 +16,35 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    color: #333;
 }
 
 .box {
-    width: 450px;
+    width: 400px;
     background: rgba(255, 255, 255, 0.95);
-    padding: 40px 50px;
+    padding: 40px;
     border-radius: 25px;
     box-shadow: 0 20px 50px rgba(0,0,0,0.2);
     text-align: center;
-    position: relative;
-    overflow: hidden;
-    animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    animation: fadeIn 0.8s ease-out;
 }
 
-.box::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 8px;
-    background: linear-gradient(90deg, #b5835a, #d4a373);
-}
-
-@keyframes popIn {
-    0% { transform: scale(0.8); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .logo-text {
     color: #b5835a;
     font-size: 24px;
     font-weight: 700;
-    margin: 0;
-    letter-spacing: 1px;
+    margin-bottom: 10px;
 }
 
-h2 {
-    margin: 15px 0 25px;
-    font-weight: 600;
-    color: #444;
-}
+h2 { margin-bottom: 25px; color: #444; font-weight: 600; }
 
 .input-group {
     position: relative;
-    margin-bottom: 15px;
-    text-align: left;
+    margin-bottom: 20px;
 }
 
 .input-group i {
@@ -70,7 +53,6 @@ h2 {
     top: 50%;
     transform: translateY(-50%);
     color: #b5835a;
-    font-size: 16px;
 }
 
 input {
@@ -80,22 +62,16 @@ input {
     border: 2px solid #eee;
     background: #fcfcfc;
     font-family: 'Prompt', sans-serif;
-    font-size: 15px;
     box-sizing: border-box;
-    transition: 0.3s;
     outline: none;
+    transition: 0.3s;
 }
 
-input:focus {
-    border-color: #b5835a;
-    background: #fff;
-    box-shadow: 0 5px 15px rgba(181, 131, 90, 0.1);
-}
+input:focus { border-color: #b5835a; background: #fff; }
 
 button {
     width: 100%;
     padding: 15px;
-    margin-top: 15px;
     border: none;
     border-radius: 50px;
     background: linear-gradient(135deg, #b5835a, #8e6545);
@@ -103,94 +79,52 @@ button {
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
     box-shadow: 0 5px 15px rgba(181, 131, 90, 0.4);
-    font-family: 'Prompt', sans-serif;
-}
-
-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(181, 131, 90, 0.6);
-}
-
-button:active {
-    transform: translateY(1px);
-}
-
-.link {
-    margin-top: 25px;
-    font-size: 14px;
-    color: #666;
-}
-
-.link a {
-    color: #b5835a;
-    text-decoration: none;
-    font-weight: 600;
     transition: 0.3s;
 }
 
-.link a:hover {
-    color: #8e6545;
-    text-decoration: underline;
-}
+button:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(181, 131, 90, 0.6); }
+
+.links { margin-top: 20px; font-size: 14px; color: #666; }
+.links a { color: #b5835a; text-decoration: none; font-weight: 600; }
 </style>
 </head>
 
 <body>
 
 <div class="box">
-    <h1 class="logo-text">HEAVEN FURNITURE</h1>
-    <h2>สร้างบัญชีใหม่</h2>
+    <div class="logo-text">HEAVEN FURNITURE</div>
+    <h2>เข้าสู่ระบบ</h2>
 
     <div class="input-group">
         <i class="fas fa-user"></i>
-        <input type="text" id="regName" placeholder="ชื่อผู้ใช้ (Username)">
+        <input type="text" id="loginUser" placeholder="ชื่อผู้ใช้">
     </div>
 
     <div class="input-group">
         <i class="fas fa-lock"></i>
-        <input type="password" id="regPass" placeholder="รหัสผ่าน">
+        <input type="password" id="loginPass" placeholder="รหัสผ่าน">
     </div>
 
-    <div class="input-group">
-        <i class="fas fa-envelope"></i>
-        <input type="email" id="regEmail" placeholder="อีเมล">
+    <button onclick="doLogin()">เข้าสู่ระบบ</button>
+
+    <div class="links">
+        ยังไม่มีบัญชี? <a href="register.html">สมัครสมาชิกที่นี่</a>
     </div>
-
-    <div class="input-group">
-        <i class="fas fa-phone"></i>
-        <input type="tel" id="regPhone" placeholder="เบอร์โทรศัพท์">
-    </div>
-
-    <button onclick="doRegister()">สมัครสมาชิก</button>
-
-    <div class="link">
-        มีบัญชีอยู่แล้ว? <a href="login.html">เข้าสู่ระบบ</a>
-    </div>
-
 </div>
 
 <script>
-function doRegister(){
-    let u = document.getElementById("regName").value;
-    let p = document.getElementById("regPass").value;
-    let e = document.getElementById("regEmail").value;
-    let t = document.getElementById("regPhone").value;
+function doLogin() {
+    let u = document.getElementById("loginUser").value;
+    let p = document.getElementById("loginPass").value;
 
-    if(u.trim()=="" || p.trim()=="" || e.trim()=="" || t.trim()==""){
-        alert("กรุณากรอกข้อมูลให้ครบทุกช่อง");
+    if(u.trim() == "" || p.trim() == "") {
+        alert("กรุณากรอกชื่อผู้ใช้และรหัสผ่าน (ใส่อะไรก็ได้)");
         return;
     }
 
-    localStorage.setItem("username", u);
-    localStorage.setItem("userpass", p);
-    localStorage.setItem("useremail", e);
-    localStorage.setItem("userphone", t);
-    localStorage.setItem("useravatar", "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
-
-    alert("สมัครสมาชิกสำเร็จ! กรุณาเข้าสู่ระบบ");
-    window.location.href = "login.html";
+    alert("เข้าสู่ระบบสำเร็จ!");
+    window.location.href = "index.html"; 
 }
 </script>
 
