@@ -147,12 +147,8 @@ body {
 .btn-heart { background: #ff4d4d; color: #fff; }
 
 #miniCart { 
-  position: fixed; top: 20%; right: -340px; width: 300px; background: white; 
-  border-radius: 20px 0 0 20px; box-shadow: -5px 5px 20px rgba(0,0,0,0.2); 
-  padding: 20px; transition: .4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-  z-index: 99999; border: 4px solid #28a745; border-right: none; 
+  display: none;
 }
-#miniCart.show { right: 0; }
 </style>
 
 <script type="text/javascript">
@@ -160,22 +156,6 @@ function MM_swapImgRestore() { var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&
 function MM_preloadImages() { var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array(); var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0;i<a.length;i++) if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}} }
 function MM_findObj(n,d) { var p,i,x; if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) { d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p); } if(!(x=d[n])&&d.all) x=d.all[n]; for(i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n]; for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); if(!x&&d.getElementById) x=d.getElementById(n); return x; }
 function MM_swapImage() { var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3) if ((x=MM_findObj(a[i]))!=null){ document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2]; } }
-
-function showNotify(name, price, img, title, color) {
-    let panel = document.getElementById("miniCart");
-    panel.style.borderColor = color;
-    panel.innerHTML = `
-    <h3 style="font-size:18px; color:${color}; margin-bottom:10px;">${title}</h3>
-    <div style="display:flex; gap:12px; align-items:center; text-align:left;">
-      <img src="${img}" width="75" style="border-radius:10px;">
-      <div>
-        <b style="font-size:15px; color:#333;">${name}</b><br>
-        <span style="color:#b5835a; font-weight:bold;">${price} THB</span>
-      </div>
-    </div>`;
-    panel.classList.add("show");
-    setTimeout(() => panel.classList.remove("show"), 2500);
-}
 
 function buyNow(name, price, img) {
     let cleanPrice = price.toString().replace(/,/g, '');
@@ -189,7 +169,6 @@ function addToCart(name, price, img) {
     let found = list.find(p => p.name === name);
     if(found) { found.qty += 1; } else { list.push({name, price: cleanPrice, img, qty:1}); }
     localStorage.setItem("cart", JSON.stringify(list));
-    showNotify(name, price, img, "🛒 เพิ่มลงตะกร้าแล้ว", "#28a745");
 }
 
 function addToFavorite(name, price, img) {
@@ -197,7 +176,6 @@ function addToFavorite(name, price, img) {
     let list = JSON.parse(localStorage.getItem("favorites") || "[]");
     if(!list.some(p => p.name === name)) { list.push({name, price: cleanPrice, img}); }
     localStorage.setItem("favorites", JSON.stringify(list));
-    showNotify(name, price, img, "❤️ เพิ่มในรายการโปรด", "#ff4d4d");
 }
 </script>
 </head>
@@ -328,6 +306,4 @@ function addToFavorite(name, price, img) {
   </div>
 </div>
 </body>
-
 </html>
-
