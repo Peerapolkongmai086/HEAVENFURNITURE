@@ -396,43 +396,10 @@ function confirmOrderProcess(e) {
         return;
     }
 
-    var orderItems = [];
-    var total = 0;
-    
-    if(currentMode === "single") {
-        var item = JSON.parse(localStorage.getItem("checkoutItem"));
-        let priceNum = parseInt(item.price.toString().replace(/[^0-9]/g, ''));
-        orderItems.push({ name: item.name, qty: 1, price: priceNum });
-        total = priceNum;
-    } else {
-        var cart = JSON.parse(localStorage.getItem("cart") || "[]");
-        cart.forEach(item => {
-            let priceNum = parseInt(item.price.toString().replace(/[^0-9]/g, ''));
-            let qty = item.qty || 1;
-            orderItems.push({ name: item.name, qty: qty, price: priceNum * qty });
-            total += (priceNum * qty);
-        });
-    }
-
-    var cName = document.getElementById("custName").value;
-    var cAddr = document.getElementById("custAddress").value;
-    var cPhone = document.getElementById("custPhone").value;
-    var fullInfo = cName + " (" + cPhone + ") " + cAddr;
-    
-    var receiptData = {
-        orderNo: "ORD-" + Math.floor(Math.random() * 1000000), 
-        customerName: fullInfo, 
-        date: new Date().toLocaleDateString('th-TH'),
-        paymentMethod: "โอนผ่านบัญชีธนาคาร (กสิกรไทย)",
-        items: orderItems,
-        totalPrice: total
-    };
-
-    localStorage.setItem("receiptData", JSON.stringify(receiptData));
     localStorage.removeItem("checkoutItem");
     localStorage.removeItem("cart");
 
-    window.location.href = "success.html";
+    window.location.href = "thankyou.html";
 }
 
 loadOrderData();
