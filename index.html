@@ -62,7 +62,7 @@ body {
     position: relative;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     transition: all 0.3s ease;
-    height: 480px; 
+    height: auto; 
     display: flex;
     flex-direction: column;
 }
@@ -90,61 +90,11 @@ body {
     mix-blend-mode: multiply; 
 }
 
-.overlay-actions {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    opacity: 1; 
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center;
-}
-
-.product-desc {
-    color: white;
-    font-size: 14px;
-    line-height: 1.4;
-    margin-bottom: 5px;
-    font-weight: 400;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-}
-
-.action-btn {
-    background: white;
-    color: #333;
-    padding: 8px 15px;
-    border-radius: 30px;
-    font-size: 13px;
-    font-weight: bold;
-    cursor: pointer;
-    width: 85%;
-    text-align: center;
-    transition: 0.2s;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    border: none;
-}
-
-.btn-buy { background: #fff; color: #333; }
-.btn-cart { background: #333; color: #fff; }
-.btn-fav { background: #ff4757; color: #fff; }
-
-.action-btn:hover { transform: scale(1.05); }
-
 .product-info {
-    padding: 15px 20px;
+    padding: 20px;
     text-align: left;
+    background: #fff;
     flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
 .product-name {
@@ -158,7 +108,46 @@ body {
     font-size: 20px;
     color: #b5835a;
     font-weight: 700;
+    margin-bottom: 10px;
 }
+
+.product-desc {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    font-weight: 400;
+    height: 40px; 
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.action-btn {
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    transition: 0.2s;
+    border: none;
+    box-sizing: border-box;
+}
+
+.btn-buy { background: #b5835a; color: #fff; }
+.btn-cart { background: #333; color: #fff; }
+.btn-fav { background: #f8f8f8; color: #ff4757; border: 1px solid #eee; }
+
+.action-btn:hover { opacity: 0.9; transform: translateY(-2px); }
 
 .contact-banner {
     border-radius: 28px;
@@ -210,6 +199,7 @@ function addToCart(name, price, img){
     let found = list.find(p => p.name === name);
     if(found){ found.qty += 1; } else { list.push({name, price, img, qty:1}); }
     localStorage.setItem("cart", JSON.stringify(list));
+    alert('เพิ่มลงตะกร้าแล้ว');
 }
 
 function addToFavorite(name, price, img){
@@ -223,8 +213,6 @@ function addToFavorite(name, price, img){
 </head>
 
 <body onLoad="MM_preloadImages('banner 2/home2.1.png','banner 2/home5.1.png','banner 2/home3.1.png','banner 2/home4.1.png','banner 2/home6/1.png','banner 2/home7/1.png','banner 2/home8/1.png','banner 2/home9/1.png','banner 2/home10/1.png')">
-
-<div id="miniCart"></div>
 
 <div class="wrapper">
   <header>
@@ -251,64 +239,64 @@ function addToFavorite(name, price, img){
     <div class="product-card">
       <div class="img-wrapper">
         <img class="product-img" src="สินค้า/โซฟาห้องนั่งเล่น.png" alt="โซฟาห้องนั่งเล่น">
-        <div class="overlay-actions">
-            <div class="product-desc">โซฟาดีไซน์นอร์ดิก นั่งสบาย<br>เหมาะสำหรับห้องรับแขก</div>
-            <div class="action-btn btn-buy" onclick="buyNow('โซฟาห้องนั่งเล่น','1999','สินค้า/โซฟาห้องนั่งเล่น.png')">ซื้อทันที</div>
-            <div class="action-btn btn-cart" onclick="addToCart('โซฟาห้องนั่งเล่น','1999','สินค้า/โซฟาห้องนั่งเล่น.png')">ใส่ตะกร้า</div>
-            <div class="action-btn btn-fav" onclick="addToFavorite('โซฟาห้องนั่งเล่น','1999','สินค้า/โซฟาห้องนั่งเล่น.png')">❤ ถูกใจ</div>
-        </div>
       </div>
       <div class="product-info">
         <div class="product-name">โซฟาห้องนั่งเล่น</div>
         <div class="product-price">1,999 THB</div>
+        <div class="product-desc">โซฟาดีไซน์นอร์ดิก นั่งสบาย เหมาะสำหรับห้องรับแขก</div>
+        <div class="button-group">
+            <div class="action-btn btn-buy" onclick="buyNow('โซฟาห้องนั่งเล่น','1999','สินค้า/โซฟาห้องนั่งเล่น.png')">ซื้อทันที</div>
+            <div class="action-btn btn-cart" onclick="addToCart('โซฟาห้องนั่งเล่น','1999','สินค้า/โซฟาห้องนั่งเล่น.png')">ใส่ตะกร้า</div>
+            <div class="action-btn btn-fav" onclick="addToFavorite('โซฟาห้องนั่งเล่น','1999','สินค้า/โซฟาห้องนั่งเล่น.png')">❤ ถูกใจ</div>
+        </div>
       </div>
     </div>
 
     <div class="product-card">
       <div class="img-wrapper">
         <img class="product-img" src="สินค้า/เก้าอี้โยก.png" alt="เก้าอี้โยก">
-        <div class="overlay-actions">
-            <div class="product-desc">เก้าอี้โยกไม้จริง แข็งแรง<br>ผ่อนคลายทุกอิริยาบถ</div>
-            <div class="action-btn btn-buy" onclick="buyNow('เก้าอี้โยก','999','สินค้า/เก้าอี้โยก.png')">ซื้อทันที</div>
-            <div class="action-btn btn-cart" onclick="addToCart('เก้าอี้โยก','999','สินค้า/เก้าอี้โยก.png')">ใส่ตะกร้า</div>
-            <div class="action-btn btn-fav" onclick="addToFavorite('เก้าอี้โยก','999','สินค้า/เก้าอี้โยก.png')">❤ ถูกใจ</div>
-        </div>
       </div>
       <div class="product-info">
         <div class="product-name">เก้าอี้โยก</div>
         <div class="product-price">999 THB</div>
+        <div class="product-desc">เก้าอี้โยกไม้จริง แข็งแรง ผ่อนคลายทุกอิริยาบถ</div>
+        <div class="button-group">
+            <div class="action-btn btn-buy" onclick="buyNow('เก้าอี้โยก','999','สินค้า/เก้าอี้โยก.png')">ซื้อทันที</div>
+            <div class="action-btn btn-cart" onclick="addToCart('เก้าอี้โยก','999','สินค้า/เก้าอี้โยก.png')">ใส่ตะกร้า</div>
+            <div class="action-btn btn-fav" onclick="addToFavorite('เก้าอี้โยก','999','สินค้า/เก้าอี้โยก.png')">❤ ถูกใจ</div>
+        </div>
       </div>
     </div>
 
     <div class="product-card">
       <div class="img-wrapper">
         <img class="product-img" src="สินค้า/เก้าอี้ไม้.png" alt="เก้าอี้ไม้">
-        <div class="overlay-actions">
-            <div class="product-desc">เก้าอี้ไม้สไตล์มินิมอล<br>เข้าได้กับทุกมุมบ้าน</div>
-            <div class="action-btn btn-buy" onclick="buyNow('เก้าอี้ไม้','499','สินค้า/เก้าอี้ไม้.png')">ซื้อทันที</div>
-            <div class="action-btn btn-cart" onclick="addToCart('เก้าอี้ไม้','499','สินค้า/เก้าอี้ไม้.png')">ใส่ตะกร้า</div>
-            <div class="action-btn btn-fav" onclick="addToFavorite('เก้าอี้ไม้','499','สินค้า/เก้าอี้ไม้.png')">❤ ถูกใจ</div>
-        </div>
       </div>
       <div class="product-info">
         <div class="product-name">เก้าอี้ไม้</div>
         <div class="product-price">499 THB</div>
+        <div class="product-desc">เก้าอี้ไม้สไตล์มินิมอล เข้าได้กับทุกมุมบ้าน</div>
+        <div class="button-group">
+            <div class="action-btn btn-buy" onclick="buyNow('เก้าอี้ไม้','499','สินค้า/เก้าอี้ไม้.png')">ซื้อทันที</div>
+            <div class="action-btn btn-cart" onclick="addToCart('เก้าอี้ไม้','499','สินค้า/เก้าอี้ไม้.png')">ใส่ตะกร้า</div>
+            <div class="action-btn btn-fav" onclick="addToFavorite('เก้าอี้ไม้','499','สินค้า/เก้าอี้ไม้.png')">❤ ถูกใจ</div>
+        </div>
       </div>
     </div>
 
     <div class="product-card">
       <div class="img-wrapper">
         <img class="product-img" src="สินค้า/ตู้เสื้อผ้า.png" alt="ตู้เสื้อผ้า">
-        <div class="overlay-actions">
-            <div class="product-desc">ตู้เสื้อผ้าดีไซน์ทันสมัย<br>จุของได้เยอะ แข็งแรงทนทาน</div>
-            <div class="action-btn btn-buy" onclick="buyNow('ตู้เสื้อผ้า','4990','สินค้า/ตู้เสื้อผ้า.png')">ซื้อทันที</div>
-            <div class="action-btn btn-cart" onclick="addToCart('ตู้เสื้อผ้า','4990','สินค้า/ตู้เสื้อผ้า.png')">ใส่ตะกร้า</div>
-            <div class="action-btn btn-fav" onclick="addToFavorite('ตู้เสื้อผ้า','4990','สินค้า/ตู้เสื้อผ้า.png')">❤ ถูกใจ</div>
-        </div>
       </div>
       <div class="product-info">
         <div class="product-name">ตู้เสื้อผ้า</div>
         <div class="product-price">4,990 THB</div>
+        <div class="product-desc">ตู้เสื้อผ้าดีไซน์ทันสมัย จุของได้เยอะ แข็งแรงทนทาน</div>
+        <div class="button-group">
+            <div class="action-btn btn-buy" onclick="buyNow('ตู้เสื้อผ้า','4990','สินค้า/ตู้เสื้อผ้า.png')">ซื้อทันที</div>
+            <div class="action-btn btn-cart" onclick="addToCart('ตู้เสื้อผ้า','4990','สินค้า/ตู้เสื้อผ้า.png')">ใส่ตะกร้า</div>
+            <div class="action-btn btn-fav" onclick="addToFavorite('ตู้เสื้อผ้า','4990','สินค้า/ตู้เสื้อผ้า.png')">❤ ถูกใจ</div>
+        </div>
       </div>
     </div>
 
