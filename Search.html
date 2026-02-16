@@ -1,4 +1,4 @@
-  <!doctype html>
+<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -78,7 +78,7 @@ body{
 .search-btn:hover { background: #a0724e; }
 
 #search-results {
-  display: none;
+  display: block; 
   width: 1534px;
   margin: 40px auto;
 }
@@ -97,7 +97,7 @@ body{
   position: relative;
   height: 480px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  display: none;
+  display: block; 
   transition: 0.3s;
 }
 .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
@@ -222,15 +222,21 @@ if((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x;if(!x.oSrc)x.oSrc=x.src;x.s
 function doSearch() {
   var input = document.querySelector('.search-input').value.toLowerCase();
   var cards = document.querySelectorAll('.product-card');
-  var resultsDiv = document.getElementById("search-results");
   var hasResult = false;
+
   cards.forEach(card => {
     var productName = card.getAttribute('data-name').toLowerCase();
-    if (input !== "" && productName.includes(input)) { card.style.display = "block"; hasResult = true; }
-    else { card.style.display = "none"; }
+    if (input === "" || productName.includes(input)) { 
+      card.style.display = "block"; 
+      hasResult = true; 
+    } else { 
+      card.style.display = "none"; 
+    }
   });
-  if (hasResult) { resultsDiv.style.display = "block"; }
-  else { resultsDiv.style.display = "none"; alert("ไม่พบสินค้าที่ตรงกับการค้นหา"); }
+
+  if (!hasResult && input !== "") { 
+    alert("ไม่พบสินค้าที่ตรงกับการค้นหา"); 
+  }
 }
 
 function buyNow(name, price, img) {
@@ -245,6 +251,7 @@ function addToCart(name, price, img) {
     let found = list.find(p => p.name === name);
     if(found) { found.qty += 1; } else { list.push({name, price: cleanPrice, img, qty:1}); }
     localStorage.setItem("cart", JSON.stringify(list));
+    alert("เพิ่มลงตะกร้าเรียบร้อยแล้ว");
 }
 
 function addToFavorite(name, price, img) {
@@ -253,6 +260,7 @@ function addToFavorite(name, price, img) {
     if(!list.some(p => p.name === name)) {
         list.push({name, price: cleanPrice, img});
         localStorage.setItem("favorites", JSON.stringify(list));
+        alert("เพิ่มในรายการโปรดแล้ว");
     } else {
         alert("สินค้านี้อยู่ในรายการโปรดแล้ว");
     }
@@ -261,8 +269,6 @@ function addToFavorite(name, price, img) {
 </head>
 
 <body onLoad="MM_preloadImages('banner 2/home1.1.png','banner 2/home2.1.png','banner 2/home3.1.png','banner 2/home4.1.png','banner 2/home6/1.png','banner 2/home7/1.png','banner 2/home8/1.png','banner 2/home9/1.png','banner 2/home10/1.png')">
-
-<div id="miniCart"></div>
 
 <div class="wrapper">
 
@@ -287,7 +293,7 @@ function addToFavorite(name, price, img) {
 
 <div class="search-section">
   <div class="search-box">
-    <input type="text" class="search-input" placeholder="พิมพ์ตัวอักษรเพื่อค้นหา...">
+    <input type="text" class="search-input" placeholder="ค้นหาเฟอร์นิเจอร์ที่คุณต้องการ...">
     <button class="search-btn" onclick="doSearch()">ค้นหา</button>
   </div>
 </div>
