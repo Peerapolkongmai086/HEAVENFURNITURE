@@ -173,15 +173,19 @@ function addToCart(name, price, img){
     let found = list.find(p => p.name === name);
     if(found){ found.qty += 1; } else { list.push({name, price, img, qty:1}); }
     localStorage.setItem("cart", JSON.stringify(list));
-    alert('เพิ่มลงตะกร้าแล้ว');
+    alert('🛒 เพิ่ม "' + name + '" ลงในตะกร้าเรียบร้อยแล้ว');
 }
 
 function addToFavorite(name, price, img){
     playClick(); 
     let list = JSON.parse(localStorage.getItem("favorites") || "[]");
-    if(!list.some(p => p.name === name)) { list.push({ name: name, price: price, img: img }); }
-    localStorage.setItem("favorites", JSON.stringify(list));
-    setTimeout(() => { window.location.href = "Favorites.html"; }, 500);
+    if(!list.some(p => p.name === name)) { 
+        list.push({ name: name, price: price, img: img }); 
+        localStorage.setItem("favorites", JSON.stringify(list));
+        alert('❤️ เพิ่ม "' + name + '" ในรายการที่ถูกใจแล้ว');
+    } else {
+        alert('สินค้านี้อยู่ในรายการที่ถูกใจของคุณอยู่แล้ว');
+    }
 }
 </script>
 </head>
