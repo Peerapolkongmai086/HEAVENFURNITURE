@@ -2,7 +2,9 @@
 <html lang="th">
 <head>
 <meta charset="utf-8">
-<title>Profile</title>
+<title>Profile - Heaven Furniture</title>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <style>
 body{
@@ -10,7 +12,7 @@ body{
   background-size:cover;
   margin:0;
   text-align:center;
-  font-family: 'Prompt', Arial, sans-serif;
+  font-family: 'Prompt', sans-serif;
   color: #333;
 }
 
@@ -23,41 +25,27 @@ body{
   border-radius:28px;
   display:block;
   margin:20px auto;
-  transition: transform .3s ease, box-shadow .3s ease;
-}
-
-.top-banner:hover{
-  transform: translateY(-8px);
-  box-shadow:0 10px 20px rgba(0,0,0,.25);
 }
 
 .nav-menu img{
   border-radius:18px;
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-
-.nav-menu img:hover{
-  transform: translateY(-6px);
-  box-shadow:0 6px 10px rgba(0,0,0,.25);
 }
 
 .profile-card{
-  width: 600px;
+  width: 500px;
   margin: 60px auto;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   padding: 50px 40px;
   border-radius: 40px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   backdrop-filter: blur(10px);
-  
   border: 1px solid rgba(255,255,255,0.5);
 }
 
 .avatar-container {
-  position: relative;
-  width: 180px;
-  height: 180px;
-  margin: 0 auto 30px; 
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 20px; 
 }
 
 .avatar{
@@ -66,32 +54,31 @@ body{
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid #fff;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   background-color: #f0f0f0;
 }
 
 #showName {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 700;
-    color: #222;
-    margin: 10px 0;
+    color: #b5835a;
+    margin: 10px 0 25px;
 }
 
 .info-box {
-    background: #f9f9f9;
+    background: #ffffff;
     border-radius: 20px;
-    padding: 25px;
-    margin-top: 25px;
+    padding: 10px 25px;
+    border: 1px solid #f0f0f0;
     text-align: left;
 }
 
 .info-item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
-    font-size: 16px;
+    padding: 15px 0;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 15px;
 }
 
 .info-item:last-child {
@@ -99,11 +86,8 @@ body{
 }
 
 .info-label {
-    color: #666;
+    color: #888;
     font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 8px;
 }
 
 .info-value {
@@ -112,31 +96,19 @@ body{
 }
 
 .logout-btn{
-  margin-top: 30px;
-  padding: 12px 35px;
+  margin-top: 35px;
+  padding: 14px 45px;
   border: none;
   border-radius: 50px;
-  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  background: #333;
   color: white;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: all .3s ease;
-  box-shadow: 0 5px 15px rgba(255, 75, 43, 0.4);
-}
-
-.logout-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 75, 43, 0.6);
-}
-
-.logout-btn:active {
-    transform: translateY(1px);
+  width: 100%;
 }
 
 </style>
-    
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
 <script type="text/javascript">
 function MM_swapImgRestore(){
@@ -184,17 +156,7 @@ function MM_swapImage(){
 
 </head>
 
-<body onLoad="MM_preloadImages(
-'banner 2/home1.1.png',
-'banner 2/home2.1.png',
-'banner 2/home3.1.png',
-'banner 2/home4.1.png',
-'banner 2/home5.1.png',
-'banner 2/home6/1.png',
-'banner 2/home7/1.png',
-'banner 2/home8/1.png',
-'banner 2/home9/1.png',
-'banner 2/home10/1.png')">
+<body onLoad="MM_preloadImages('banner 2/home1.1.png','banner 2/home2.1.png','banner 2/home3.1.png','banner 2/home4.1.png','banner 2/home5.1.png','banner 2/home6/1.png','banner 2/home7/1.png','banner 2/home8/1.png','banner 2/home9/1.png','banner 2/home10/1.png')">
 
 <div class="wrapper">
 
@@ -218,14 +180,24 @@ function MM_swapImage(){
 </table>
 
 <div class="profile-card">
-
     <div class="avatar-container">
         <img id="avatar" class="avatar" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Profile Picture">
     </div>
 
-   <h2 id="showName">username</h2>
+    <h2 id="showName">Username</h2>
 
-        
+    <div class="info-box">
+        <div class="info-item">
+            <span class="info-label"><i class="fa-solid fa-envelope"></i> อีเมล:</span>
+            <span class="info-value" id="showEmail">-</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label"><i class="fa-solid fa-phone"></i> เบอร์โทรศัพท์:</span>
+            <span class="info-value" id="showPhone">-</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label"><i class="fa-solid fa-calendar-days"></i> วันที่สมัครสมาชิก:</span>
+            <span class="info-value" id="signupDate">-</span>
         </div>
     </div>
 
@@ -235,18 +207,16 @@ function MM_swapImage(){
 </div>
 
 <script>
-    
 window.addEventListener("load", function(){
-
   if(localStorage.getItem("isLogin") !== "true"){
     alert("กรุณาเข้าสู่ระบบก่อน");
     window.location.href = "login.html";
     return;
   }
 
-  let name  = localStorage.getItem("username");
-  let email = localStorage.getItem("useremail");
-  let phone = localStorage.getItem("userphone");
+  let name = localStorage.getItem("username");
+  let email = localStorage.getItem("useremail") || "ไม่ระบุ";
+  let phone = localStorage.getItem("userphone") || "ไม่ระบุ";
 
   let today = new Date();
   let thaiDate = today.toLocaleDateString("th-TH", {
@@ -254,15 +224,18 @@ window.addEventListener("load", function(){
     month:"long",
     year:"numeric"
   });
+  
   document.getElementById("signupDate").innerText = thaiDate;
-
   if(name) document.getElementById("showName").innerText = name;
-  if(email) document.getElementById("showEmail").innerText = email;
-  if(phone) document.getElementById("showPhone").innerText = phone;
+  document.getElementById("showEmail").innerText = email;
+  document.getElementById("showPhone").innerText = phone;
 });
 
 function logout(){
-  localStorage.clear();   
+  localStorage.removeItem("isLogin");
+  localStorage.removeItem("username");
+  localStorage.removeItem("useremail");
+  localStorage.removeItem("userphone");
   alert("ออกจากระบบเรียบร้อย");
   window.location.href = "login.html";
 }
@@ -270,6 +243,3 @@ function logout(){
 
 </body>
 </html>
-
-
-
