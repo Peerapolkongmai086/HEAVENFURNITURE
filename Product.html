@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Product - FurniDesign</title>
+<title>Product - Heaven Furniture</title>
 
 <style>
 body {
@@ -22,12 +22,6 @@ body {
   border-radius: 28px;
   display: block;
   margin: 20px auto;
-  transition: transform .3s ease, box-shadow .3s ease;
-}
-
-.top-banner:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 20px rgba(0,0,0,.25);
 }
 
 .nav-menu {
@@ -36,12 +30,6 @@ body {
 
 .nav-menu img {
   border-radius: 18px;
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-
-.nav-menu img:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 10px rgba(0,0,0,.25);
 }
 
 .product-grid-container {
@@ -54,19 +42,19 @@ body {
 }
 
 .product-card {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: white;
   border-radius: 25px;
   overflow: hidden;
-  position: relative;
-  height: 480px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
 
 .product-img-box {
   width: 100%;
   height: 350px;
-  background-color: transparent; 
+  background-color: #fcfcfc;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,71 +68,58 @@ body {
 }
 
 .product-info {
-  padding: 15px;
+  padding: 25px;
   background: #fff;
+  flex-grow: 1;
 }
 
 .product-title {
-  font-size: 19px;
+  font-size: 20px;
   font-weight: bold;
   color: #333;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 .product-price {
   color: #b5835a;
   font-size: 22px;
   font-weight: bold;
-}
-
-.product-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(181, 131, 90, 0.95);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transform: translateY(15px);
-  transition: all 0.4s ease;
-  padding: 25px;
-  box-sizing: border-box;
-  color: white;
-  z-index: 10;
-}
-
-.product-card:hover .product-overlay {
-  opacity: 1;
-  transform: translateY(0);
+  margin-bottom: 12px;
 }
 
 .product-desc {
   font-size: 14px;
+  color: #666;
   margin-bottom: 20px;
-  line-height: 1.4;
+  line-height: 1.5;
+  height: 42px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .button-group {
   display: flex;
-  gap: 12px;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .btn {
-  padding: 12px 20px;
+  padding: 12px;
   border: none;
   border-radius: 12px;
   cursor: pointer;
   font-weight: bold;
-  transition: 0.2s;
+  font-size: 14px;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
 }
 
-.btn-buy { background: #fff; color: #b5835a; }
+.btn-buy { background: #b5835a; color: #fff; }
 .btn-cart { background: #333; color: #fff; }
-.btn-heart { background: #ff4d4d; color: #fff; }
+.btn-heart { background: #f8f8f8; color: #ff4d4d; border: 1px solid #eee; }
 
 #miniCart { 
   display: none;
@@ -158,31 +133,33 @@ function MM_findObj(n,d) { var p,i,x; if(!d) d=document; if((p=n.indexOf("?"))>0
 function MM_swapImage() { var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3) if ((x=MM_findObj(a[i]))!=null){ document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2]; } }
 
 function buyNow(name, price, img) {
-    let cleanPrice = price.toString().replace(/,/g, '');
+    let cleanPrice = price.toString().replace(/,/g, '').replace(' THB', '');
     localStorage.setItem("checkoutItem", JSON.stringify({ name, price: cleanPrice, img }));
     window.location.href = "payment.html";
 }
 
 function addToCart(name, price, img) {
-    let cleanPrice = price.toString().replace(/,/g, '');
+    let cleanPrice = price.toString().replace(/,/g, '').replace(' THB', '');
     let list = JSON.parse(localStorage.getItem("cart") || "[]");
     let found = list.find(p => p.name === name);
     if(found) { found.qty += 1; } else { list.push({name, price: cleanPrice, img, qty:1}); }
     localStorage.setItem("cart", JSON.stringify(list));
+    alert("เพิ่มลงตะกร้าเรียบร้อยแล้ว");
 }
 
 function addToFavorite(name, price, img) {
-    let cleanPrice = price.toString().replace(/,/g, '');
+    let cleanPrice = price.toString().replace(/,/g, '').replace(' THB', '');
     let list = JSON.parse(localStorage.getItem("favorites") || "[]");
-    if(!list.some(p => p.name === name)) { list.push({name, price: cleanPrice, img}); }
-    localStorage.setItem("favorites", JSON.stringify(list));
+    if(!list.some(p => p.name === name)) { 
+        list.push({name, price: cleanPrice, img}); 
+        localStorage.setItem("favorites", JSON.stringify(list));
+        alert("เพิ่มในรายการโปรดแล้ว");
+    }
 }
 </script>
 </head>
 
 <body onLoad="MM_preloadImages('banner 2/home1.1.png','banner 2/home5.1.png','banner 2/home3.1.png','banner 2/home4.1.png','banner 2/home6/1.png','banner 2/home7/1.png','banner 2/home8/1.png','banner 2/home9/1.png','banner 2/home10/1.png')">
-
-<div id="miniCart"></div>
 
 <div class="wrapper">
 
@@ -212,13 +189,11 @@ function addToFavorite(name, price, img) {
       <div class="product-info">
         <div class="product-title">Nordic Sofa</div>
         <div class="product-price">12,900 THB</div>
-      </div>
-      <div class="product-overlay">
         <div class="product-desc">โซฟาสไตล์นอร์ดิก ดีไซน์เรียบหรู นุ่มสบาย เหมาะสำหรับห้องนั่งเล่นทันสมัย</div>
         <div class="button-group">
-          <button class="btn btn-buy" onclick="buyNow('Nordic Sofa', '12,900', 'สินค้า/nordic sofa.png')">Buy</button>
-          <button class="btn btn-cart" onclick="addToCart('Nordic Sofa', '12,900', 'สินค้า/nordic sofa.png')">Cart</button>
-          <button class="btn btn-heart" onclick="addToFavorite('Nordic Sofa', '12,900', 'สินค้า/nordic sofa.png')">❤️</button>
+          <button class="btn btn-buy" onclick="buyNow('Nordic Sofa', '12,900', 'สินค้า/nordic sofa.png')">Buy Now</button>
+          <button class="btn btn-cart" onclick="addToCart('Nordic Sofa', '12,900', 'สินค้า/nordic sofa.png')">Add to Cart</button>
+          <button class="btn btn-heart" onclick="addToFavorite('Nordic Sofa', '12,900', 'สินค้า/nordic sofa.png')">❤️ Add Favorite</button>
         </div>
       </div>
     </div>
@@ -228,13 +203,11 @@ function addToFavorite(name, price, img) {
       <div class="product-info">
         <div class="product-title">Modern Wood Bed</div>
         <div class="product-price">25,500 THB</div>
-      </div>
-      <div class="product-overlay">
         <div class="product-desc">เตียงไม้จริงสไตล์โมเดิร์น แข็งแรงทนทาน ให้ความรู้สึกอบอุ่นและพักผ่อนได้อย่างเต็มอิ่ม</div>
         <div class="button-group">
-          <button class="btn btn-buy" onclick="buyNow('Modern Wood Bed', '25,500', 'สินค้า/modern wood bed.png')">Buy</button>
-          <button class="btn btn-cart" onclick="addToCart('Modern Wood Bed', '25,500', 'สินค้า/modern wood bed.png')">Cart</button>
-          <button class="btn btn-heart" onclick="addToFavorite('Modern Wood Bed', '25,500', 'สินค้า/modern wood bed.png')">❤️</button>
+          <button class="btn btn-buy" onclick="buyNow('Modern Wood Bed', '25,500', 'สินค้า/modern wood bed.png')">Buy Now</button>
+          <button class="btn btn-cart" onclick="addToCart('Modern Wood Bed', '25,500', 'สินค้า/modern wood bed.png')">Add to Cart</button>
+          <button class="btn btn-heart" onclick="addToFavorite('Modern Wood Bed', '25,500', 'สินค้า/modern wood bed.png')">❤️ Add Favorite</button>
         </div>
       </div>
     </div>
@@ -244,13 +217,11 @@ function addToFavorite(name, price, img) {
       <div class="product-info">
         <div class="product-title">Marble Dining Table</div>
         <div class="product-price">8,900 THB</div>
-      </div>
-      <div class="product-overlay">
         <div class="product-desc">โต๊ะอาหารท็อปหินอ่อนหรูหรา ทำความสะอาดง่าย เสริมบรรยากาศห้องอาหารให้ดูพรีเมียม</div>
         <div class="button-group">
-          <button class="btn btn-buy" onclick="buyNow('Marble Dining Table', '8,900', 'สินค้า/marble dinding table.png')">Buy</button>
-          <button class="btn btn-cart" onclick="addToCart('Marble Dining Table', '8,900', 'สินค้า/marble dinding table.png')">Cart</button>
-          <button class="btn btn-heart" onclick="addToFavorite('Marble Dining Table', '8,900', 'สินค้า/marble dinding table.png')">❤️</button>
+          <button class="btn btn-buy" onclick="buyNow('Marble Dining Table', '8,900', 'สินค้า/marble dinding table.png')">Buy Now</button>
+          <button class="btn btn-cart" onclick="addToCart('Marble Dining Table', '8,900', 'สินค้า/marble dinding table.png')">Add to Cart</button>
+          <button class="btn btn-heart" onclick="addToFavorite('Marble Dining Table', '8,900', 'สินค้า/marble dinding table.png')">❤️ Add Favorite</button>
         </div>
       </div>
     </div>
@@ -260,13 +231,11 @@ function addToFavorite(name, price, img) {
       <div class="product-info">
         <div class="product-title">Ergonomic Chair</div>
         <div class="product-price">4,500 THB</div>
-      </div>
-      <div class="product-overlay">
-        <div class="product-desc">เก้าอี้เพื่อสุขภาพ ปรับระดับได้ตามต้องการ รองรับสรีระ ช่วยลดอาการปวดเมื่อยจากการทำงาน</div>
+        <div class="product-desc">เก้าอี้เพื่อสุขภาพ ปรับระดับได้ตามต้องการ รองรับสรีระ ช่วยลดอาการปวดเมื่อย</div>
         <div class="button-group">
-          <button class="btn btn-buy" onclick="buyNow('Ergonomic Chair', '4,500', 'สินค้า/eeergonomic chair.png')">Buy</button>
-          <button class="btn btn-cart" onclick="addToCart('Ergonomic Chair', '4,500', 'สินค้า/eeergonomic chair.png')">Cart</button>
-          <button class="btn btn-heart" onclick="addToFavorite('Ergonomic Chair', '4,500', 'สินค้า/eeergonomic chair.png')">❤️</button>
+          <button class="btn btn-buy" onclick="buyNow('Ergonomic Chair', '4,500', 'สินค้า/eeergonomic chair.png')">Buy Now</button>
+          <button class="btn btn-cart" onclick="addToCart('Ergonomic Chair', '4,500', 'สินค้า/eeergonomic chair.png')">Add to Cart</button>
+          <button class="btn btn-heart" onclick="addToFavorite('Ergonomic Chair', '4,500', 'สินค้า/eeergonomic chair.png')">❤️ Add Favorite</button>
         </div>
       </div>
     </div>
@@ -276,13 +245,11 @@ function addToFavorite(name, price, img) {
       <div class="product-info">
         <div class="product-title">Minimalist Lamp</div>
         <div class="product-price">1,200 THB</div>
-      </div>
-      <div class="product-overlay">
         <div class="product-desc">โคมไฟตั้งโต๊ะสไตล์มินิมอล แสงนุ่มนวลถนอมสายตา ดีไซน์ประหยัดพื้นที่</div>
         <div class="button-group">
-          <button class="btn btn-buy" onclick="buyNow('Minimalist Lamp', '1,200', 'สินค้า/minimalist lamp.png')">Buy</button>
-          <button class="btn btn-cart" onclick="addToCart('Minimalist Lamp', '1,200', 'สินค้า/minimalist lamp.png')">Cart</button>
-          <button class="btn btn-heart" onclick="addToFavorite('Minimalist Lamp', '1,200', 'สินค้า/minimalist lamp.png')">❤️</button>
+          <button class="btn btn-buy" onclick="buyNow('Minimalist Lamp', '1,200', 'สินค้า/minimalist lamp.png')">Buy Now</button>
+          <button class="btn btn-cart" onclick="addToCart('Minimalist Lamp', '1,200', 'สินค้า/minimalist lamp.png')">Add to Cart</button>
+          <button class="btn btn-heart" onclick="addToFavorite('Minimalist Lamp', '1,200', 'สินค้า/minimalist lamp.png')">❤️ Add Favorite</button>
         </div>
       </div>
     </div>
@@ -292,13 +259,11 @@ function addToFavorite(name, price, img) {
       <div class="product-info">
         <div class="product-title">Multipurpose Shelf</div>
         <div class="product-price">3,500 THB</div>
-      </div>
-      <div class="product-overlay">
         <div class="product-desc">ชั้นวางของอเนกประสงค์ จัดเก็บของได้เป็นระเบียบ แข็งแรง รับน้ำหนักได้ดี</div>
         <div class="button-group">
-          <button class="btn btn-buy" onclick="buyNow('Multipurpose Shelf', '3,500', 'สินค้า/multipurpase shelf.png')">Buy</button>
-          <button class="btn btn-cart" onclick="addToCart('Multipurpose Shelf', '3,500', 'สินค้า/multipurpase shelf.png')">Cart</button>
-          <button class="btn btn-heart" onclick="addToFavorite('Multipurpose Shelf', '3,500', 'สินค้า/multipurpase shelf.png')">❤️</button>
+          <button class="btn btn-buy" onclick="buyNow('Multipurpose Shelf', '3,500', 'สินค้า/multipurpase shelf.png')">Buy Now</button>
+          <button class="btn btn-cart" onclick="addToCart('Multipurpose Shelf', '3,500', 'สินค้า/multipurpase shelf.png')">Add to Cart</button>
+          <button class="btn btn-heart" onclick="addToFavorite('Multipurpose Shelf', '3,500', 'สินค้า/multipurpase shelf.png')">❤️ Add Favorite</button>
         </div>
       </div>
     </div>
