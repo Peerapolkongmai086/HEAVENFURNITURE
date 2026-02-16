@@ -9,7 +9,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-
 body {
   background: url("banner 2/bg.png") no-repeat fixed center;
   background-size: cover;
@@ -27,12 +26,6 @@ body {
   border-radius: 28px;
   display: block;
   margin: 20px auto;
-  transition: transform .3s ease, box-shadow .3s ease;
-}
-
-.top-banner:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 20px rgba(0,0,0,.25);
 }
 
 .nav-menu {
@@ -41,12 +34,6 @@ body {
 
 .nav-menu img {
   border-radius: 18px;
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-
-.nav-menu img:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 10px rgba(0,0,0,.25);
 }
 
 .fav-wrapper {
@@ -71,16 +58,10 @@ body {
   background: #fff;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.06);
-  transition: .3s;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.06);
   position: relative;
   border: 1px solid #f2f2f2;
   text-align: left;
-}
-
-.fav-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.1);
 }
 
 .fav-card img {
@@ -126,11 +107,6 @@ body {
   font-size: 20px;
   z-index: 5;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  transition: 0.2s;
-}
-.remove-badge:hover {
-  transform: scale(1.1);
-  background: #ff2e43;
 }
 
 .btn-cart {
@@ -142,7 +118,6 @@ body {
   border-radius: 12px;
   font-weight: bold;
   cursor: pointer;
-  transition: .2s;
   font-family: 'Prompt', sans-serif;
 }
 .btn-cart:hover { background: #b5835a; }
@@ -160,9 +135,7 @@ body {
   text-decoration: none;
   border-radius: 25px;
   font-weight: bold;
-  transition: 0.2s;
 }
-.btn-shop:hover { background: #a0724e; }
 </style>
 
 <script type="text/javascript">
@@ -196,7 +169,6 @@ function loadFavorites(){
     if(!item || !item.name || !item.img) return;
 
     let price = item.price;
-    
     if(typeof price === "string") price = parseFloat(price.replace(/,/g, ''));
     if(isNaN(price)) price = 0;
 
@@ -239,7 +211,6 @@ function addToCart(name, price, img){
 <body onLoad="MM_preloadImages('banner 2/home1.1.png','banner 2/home2.1.png','banner 2/home5.1.png','banner 2/home3.1.png','banner 2/home4.1.png','banner 2/home6/1.png','banner 2/home7/1.png','banner 2/home8/1.png','banner 2/home9/1.png','banner 2/home10/1.png'); loadFavorites();">
 
 <div class="wrapper">
-
   <header>
     <img class="top-banner" src="bannerrrrrrrrrrrrrrrrrrrrrrrrr33/favorites.png" width="1605" height="200" alt="Favorites Header">
   </header>
@@ -263,11 +234,8 @@ function addToCart(name, price, img){
     <h1 style="margin-bottom: 10px; color: #333;">❤️ รายการสินค้าที่คุณถูกใจ</h1>
     <p style="color: #666; margin-bottom: 30px;">บันทึกรายการสินค้าที่คุณชื่นชอบไว้ที่นี่</p>
     <hr style="border: 0; height: 1px; background: #eee;">
-
     <div id="favList" class="fav-grid"></div>
   </div>
-
 </div>
-
 </body>
 </html>
