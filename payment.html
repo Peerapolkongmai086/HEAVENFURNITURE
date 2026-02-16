@@ -175,49 +175,6 @@ body {
     gap: 10px;
 }
 
-.payment-methods-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 25px;
-}
-
-.method-option {
-    border: 2px solid #eee;
-    border-radius: 12px;
-    padding: 15px 5px;
-    cursor: pointer;
-    text-align: center;
-    transition: all 0.3s ease;
-    position: relative;
-    background: #fafafa;
-}
-
-.method-option:hover {
-    border-color: #b5835a;
-    background: #fff;
-    transform: translateY(-2px);
-}
-
-.method-option.active {
-    border-color: #b5835a;
-    background: #fff9f5;
-    box-shadow: 0 5px 15px rgba(181, 131, 90, 0.2);
-}
-.method-option.active::after {
-    content: '✔';
-    position: absolute; top: -8px; right: -8px;
-    background: #b5835a; color: white;
-    width: 20px; height: 20px; border-radius: 50%;
-    font-size: 12px; display: flex;
-    align-items: center; justify-content: center;
-    border: 2px solid white;
-}
-
-.method-icon { font-size: 20px; margin-bottom: 5px; display: block; }
-.method-title { font-weight: bold; font-size: 13px; color: #555; }
-.method-option.active .method-title { color: #b5835a; }
-
 .bank-card {
     background: linear-gradient(135deg, #138f2d 0%, #066d20 100%);
     color: white;
@@ -228,51 +185,6 @@ body {
     position: relative;
     overflow: hidden;
     border: 1px solid #117e28;
-    animation: fadeIn 0.5s;
-}
-
-.qr-card {
-    background: white;
-    padding: 0;
-    border-radius: 15px;
-    margin-bottom: 30px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    text-align: center;
-    border: 1px solid #ddd;
-    display: none;
-    overflow: hidden;
-    animation: fadeIn 0.5s;
-    max-width: 320px;
-    margin-left: auto;
-    margin-right: auto;
-}
-.qr-header {
-    background: #003d99;
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-.qr-body { padding: 25px; }
-.qr-img { width: 200px; height: 200px; margin-bottom: 10px; }
-.qr-footer {
-    background: #f4f6f9;
-    padding: 10px;
-    font-size: 12px;
-    color: #666;
-    border-top: 1px solid #eee;
-}
-
-.cod-card {
-    background: linear-gradient(135deg, #ff9f43 0%, #ee5253 100%);
-    color: white;
-    padding: 25px;
-    border-radius: 15px;
-    margin-bottom: 30px;
-    box-shadow: 0 10px 20px rgba(238, 82, 83, 0.4);
-    text-align: center;
-    display: none;
     animation: fadeIn 0.5s;
 }
 
@@ -379,7 +291,6 @@ textarea.form-control { resize: vertical; min-height: 80px; }
 }
 .btn-modal-confirm:hover { background: #a0724e; transform: translateY(-2px); }
 
-#slipUploadSection { transition: 0.3s; }
 </style>
 
 <script type="text/javascript">
@@ -443,49 +354,13 @@ function MM_swapImage() { var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=n
 
     <div class="payment-details">
       
-      <div class="section-header"><i class="fas fa-wallet"></i> เลือกวิธีการชำระเงิน</div>
+      <div class="section-header"><i class="fas fa-university"></i> ข้อมูลการชำระเงิน (ธนาคารกสิกรไทย)</div>
       
-      <div class="payment-methods-grid">
-          <div class="method-option active" id="opt-bank" onclick="selectMethod('bank')">
-              <span class="method-icon" style="color:#138f2d;"><i class="fas fa-university"></i></span>
-              <div class="method-title">โอนผ่านบัญชี</div>
-          </div>
-          <div class="method-option" id="opt-qr" onclick="selectMethod('qr')">
-              <span class="method-icon" style="color:#003d99;"><i class="fas fa-qrcode"></i></span>
-              <div class="method-title">สแกน QR Code</div>
-          </div>
-          <div class="method-option" id="opt-cod" onclick="selectMethod('cod')">
-              <span class="method-icon" style="color:#e67e22;"><i class="fas fa-truck"></i></span>
-              <div class="method-title">เก็บเงินปลายทาง</div>
-          </div>
-      </div>
-
       <div id="bankInfoSection" class="bank-card">
         <div class="bank-logo">K-BANK</div>
         <h3>ธนาคารกสิกรไทย (KBANK)</h3>
         <p>ชื่อบัญชี: <b>HEAVEN FURNITURE</b></p>
         <p style="font-size:24px; font-weight:bold; letter-spacing:2px; margin-top:10px;">111-1-11111-1</p>
-      </div>
-
-      <div id="qrInfoSection" class="qr-card">
-        <div class="qr-header">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/PromptPay-logo.png" alt="PromptPay" style="height:35px; background:white; padding:2px 8px;">
-            <b style="color:white; font-size:18px;">Thai QR Payment</b>
-        </div>
-        <div class="qr-body">
-            <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=00020101021129370016A000000677010111011300661111111115802TH530376463045E67" alt="PromptPay QR">
-            <p style="margin-top:5px; font-weight:bold; font-size:16px;">HEAVEN FURNITURE</p>
-            <p style="font-size:13px; color:#555;">ID: 111-1-11111-1</p>
-        </div>
-        <div class="qr-footer">
-            รับเงินได้จากทุกธนาคาร (All Banks)
-        </div>
-      </div>
-
-      <div id="codInfoSection" class="cod-card">
-          <i class="fas fa-hand-holding-usd" style="font-size:40px; margin-bottom:10px;"></i>
-          <h3>เก็บเงินปลายทาง (Cash on Delivery)</h3>
-          <p>กรุณาเตรียมเงินสดให้พอดีกับยอดชำระ<br>พนักงานจะโทรหาก่อนเข้าไปส่งสินค้าครับ</p>
       </div>
 
       <div class="section-header"><i class="fas fa-file-invoice"></i> ข้อมูลการจัดส่ง</div>
@@ -508,7 +383,7 @@ function MM_swapImage() { var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=n
 
         <div class="form-group" id="slipUploadSection">
           <label>อัปโหลดสลิปการโอนเงิน:</label>
-          <input type="file" id="slipFile" accept="image/*" style="padding: 10px; background:#f0f0f0; width:95%; border-radius:10px;">
+          <input type="file" id="slipFile" accept="image/*" style="padding: 10px; background:#f0f0f0; width:95%; border-radius:10px;" required>
         </div>
         
         <input type="submit" class="btn-confirm" id="btnSubmit" value="ยืนยันการแจ้งชำระเงิน">
@@ -522,7 +397,6 @@ function MM_swapImage() { var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=n
 <script>
 
 var currentMode = "cart"; 
-var selectedMethod = "bank"; 
 
 function loadOrderData(){
     var container = document.getElementById("orderItemsList");
@@ -600,44 +474,6 @@ function cancelOrder(){
     }
 }
 
-function selectMethod(method) {
-    selectedMethod = method;
-    document.getElementById("opt-bank").classList.remove("active");
-    document.getElementById("opt-qr").classList.remove("active");
-    document.getElementById("opt-cod").classList.remove("active");
-    
-    document.getElementById("opt-" + method).classList.add("active");
-
-    var bankSection = document.getElementById("bankInfoSection");
-    var qrSection = document.getElementById("qrInfoSection");
-    var codSection = document.getElementById("codInfoSection");
-    var slipSection = document.getElementById("slipUploadSection");
-    var slipInput = document.getElementById("slipFile");
-    var btnSubmit = document.getElementById("btnSubmit");
-
-    bankSection.style.display = "none";
-    qrSection.style.display = "none";
-    codSection.style.display = "none";
-
-    if (method === "bank") {
-        bankSection.style.display = "block";
-        slipSection.style.display = "block";
-        slipInput.required = true;
-        btnSubmit.value = "ยืนยันการแจ้งชำระเงิน";
-    } else if (method === "qr") {
-        qrSection.style.display = "block";
-        slipSection.style.display = "block";
-        slipInput.required = true;
-        btnSubmit.value = "ยืนยันการแจ้งชำระเงิน";
-    } else { 
-        codSection.style.display = "block";
-        slipSection.style.display = "none";
-        slipInput.required = false;
-        slipInput.value = ""; 
-        btnSubmit.value = "ยืนยันการสั่งซื้อ (COD)";
-    }
-}
-
 function openConfirmModal(e) {
     e.preventDefault();
 
@@ -683,16 +519,11 @@ function confirmOrderProcess() {
     var cPhone = document.getElementById("custPhone").value;
     var fullInfo = cName + " (" + cPhone + ") " + cAddr;
     
-    var methodText = "";
-    if(selectedMethod === 'bank') methodText = "โอนผ่านบัญชีธนาคาร";
-    else if(selectedMethod === 'qr') methodText = "สแกน QR Code";
-    else methodText = "เก็บเงินปลายทาง";
-
     var receiptData = {
         orderNo: "ORD-" + Math.floor(Math.random() * 1000000), 
         customerName: fullInfo, 
         date: new Date().toLocaleDateString('th-TH'),
-        paymentMethod: methodText,
+        paymentMethod: "โอนผ่านบัญชีธนาคาร (กสิกรไทย)",
         items: orderItems,
         totalPrice: total
     };
@@ -705,7 +536,6 @@ function confirmOrderProcess() {
 }
 
 loadOrderData();
-selectMethod('bank');
 
 document.getElementById("payForm").onsubmit = openConfirmModal;
 
