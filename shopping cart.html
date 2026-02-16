@@ -114,6 +114,17 @@ body {
     margin-bottom: 10px;
 }
 
+.btn-fav-small {
+    background: #f8f8f8;
+    color: #ff4757;
+    border: 1px solid #eee;
+    padding: 5px 15px;
+    border-radius: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
 .summary-section {
     margin-top: 50px;
     padding-top: 30px;
@@ -210,11 +221,26 @@ function loadCart(){
         <img src="${item.img}">
         <div class="cart-title">${item.name}</div>
         <div class="cart-price">฿${priceNum.toLocaleString()}</div>
+        <button class="btn-fav-small" onclick="justAlertFav('${item.name}')">❤ ถูกใจ</button>
       </div>
     `;
   });
   
   totalPriceEl.innerText = "฿" + total.toLocaleString();
+}
+
+function justAlertFav(name) {
+    let list = JSON.parse(localStorage.getItem("favorites") || "[]");
+    if(!list.some(p => p.name === name)) {
+       
+        let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        let item = cart.find(p => p.name === name);
+        list.push({ name: item.name, price: item.price, img: item.img });
+        localStorage.setItem("favorites", JSON.stringify(list));
+        alert("❤️ เพิ่ม '" + name + "' เข้าในรายการที่ถูกใจแล้ว");
+    } else {
+        alert("สินค้านี้อยู่ในรายการที่ถูกใจอยู่แล้ว");
+    }
 }
 
 function removeItem(index){
