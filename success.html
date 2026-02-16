@@ -34,37 +34,6 @@
         to { transform: translateY(0); opacity: 1; }
     }
 
-    .icon-box {
-        width: 80px;
-        height: 80px;
-        background-color: #2ecc71;
-        border-radius: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 auto 20px auto;
-        box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
-    }
-    
-    .icon-box svg {
-        width: 45px;
-        height: 45px;
-        fill: white;
-    }
-
-    h1 {
-        font-size: 28px;
-        color: #333;
-        margin: 0 0 10px 0;
-        font-weight: 700;
-    }
-
-    .subtitle {
-        color: #888;
-        font-size: 14px;
-        margin-bottom: 30px;
-    }
-
     .receipt-box { 
         background: #fcfcfc; 
         border: 2px dashed #e0e0e0; 
@@ -74,195 +43,96 @@
         margin-bottom: 30px;
     }
 
-    .receipt-header {
-        text-align: center;
-        font-weight: bold;
-        color: #555;
-        margin-bottom: 20px;
-        font-size: 16px;
-    }
-
-    .row { 
-        display: flex; 
-        justify-content: space-between; 
-        margin-bottom: 12px;
-        font-size: 14px; 
-        color: #555;
-    }
-
-    .row.address-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 5px;
-    }
-    
-    .row.address-row b {
-        font-weight: 400;
-        color: #333;
-        font-size: 13px;
-        line-height: 1.4;
-        background: #f0f0f0;
-        padding: 8px;
-        border-radius: 8px;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
+    .row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 14px; color: #555; }
+    .row.address-row { flex-direction: column; align-items: flex-start; gap: 5px; }
+    .row.address-row b { font-weight: 400; color: #333; font-size: 13px; line-height: 1.4; background: #f0f0f0; padding: 8px; border-radius: 8px; width: 100%; box-sizing: border-box; }
     .row span { color: #888; font-weight: 500; }
     .row b { color: #333; font-weight: 600; }
-
-    .divider {
-        height: 1px;
-        background-color: #eee;
-        margin: 15px 0;
-    }
-
-    .item-list {
-        max-height: 150px;
-        overflow-y: auto;
-    }
-    
-    .item-row {
-        display: flex;
-        justify-content: space-between;
-        font-size: 14px;
-        margin-bottom: 8px;
-        color: #444;
-    }
-
-    .total-row {
-        display: flex; 
-        justify-content: space-between; 
-        align-items: center;
-        margin-top: 15px; 
-    }
-
-    .total-label {
-        font-size: 16px;
-        font-weight: bold;
-        color: #333;
-    }
-
-    .total-price {
-        font-size: 22px; 
-        font-weight: bold;
-        color: #b5835a; 
-    }
+    .divider { height: 1px; background-color: #eee; margin: 15px 0; }
+    .item-list { max-height: 150px; overflow-y: auto; }
+    .item-row { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px; color: #444; }
+    .total-price { font-size: 22px; font-weight: bold; color: #b5835a; }
 
     .btn-confirm { 
-        background: #333; 
-        color: white; 
-        padding: 15px 60px; 
-        text-decoration: none; 
-        border-radius: 50px; 
-        display: inline-block; 
-        font-weight: bold; 
-        font-size: 18px;
-        transition: 0.3s;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        cursor: pointer;
-        border: none;
+        background: #333; color: white; padding: 15px 60px; 
+        text-decoration: none; border-radius: 50px; display: inline-block; 
+        font-weight: bold; font-size: 18px; transition: 0.3s; cursor: pointer;
     }
-    .btn-confirm:hover {
-        background: #2ecc71; 
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(46, 204, 113, 0.4);
+
+    .modal-overlay {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.5); display: none;
+        justify-content: center; align-items: center; z-index: 1000;
     }
-    
-    .item-list::-webkit-scrollbar { width: 5px; }
-    .item-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 5px; }
+    .modal-content {
+        background: white; padding: 40px; border-radius: 25px;
+        width: 400px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .btn-modal { padding: 12px 25px; border-radius: 50px; border: none; font-weight: bold; cursor: pointer; margin: 5px; }
+    .btn-back { background: #fff; color: #888; border: 1.5px solid #ddd; }
+    .btn-brown { background: #b5835a; color: white; }
 </style>
 </head>
 <body>
 
 <div class="success-card">
-    <div class="icon-box">
-        <svg viewBox="0 0 24 24">
-            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-        </svg>
-    </div>
-
-    <h1>สั่งซื้อสำเร็จ!</h1>
-    <div class="subtitle">ขอบคุณที่ไว้วางใจ Heaven Furniture</div>
-    
+    <h1>ตรวจสอบข้อมูล</h1>
     <div class="receipt-box">
-        <div class="receipt-header">ใบเสร็จรับเงิน</div>
-        
         <div class="row"><span>เลขที่สั่งซื้อ:</span><b id="resNo">...</b></div>
         <div class="row"><span>วันที่:</span><b id="resDate">...</b></div>
-        
         <div class="row"><span>ผู้รับ:</span><b id="resName">...</b></div>
-        <div class="row address-row">
-            <span>ที่อยู่จัดส่ง:</span>
-            <b id="resAddr">...</b>
-        </div>
-        
+        <div class="row address-row"><span>ที่อยู่:</span><b id="resAddr">...</b></div>
         <div class="divider"></div>
-
         <div class="item-list" id="resItems"></div>
-
         <div class="divider"></div>
-
-        <div class="total-row">
-            <span class="total-label">ยอดสุทธิ</span>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-weight:bold;">ยอดสุทธิ</span>
             <span class="total-price" id="resTotal">0 THB</span>
         </div>
     </div>
-    
-    <a href="index.html" class="btn-confirm" onclick="clearData()">กลับหน้าหลัก</a>
+    <a href="javascript:void(0)" class="btn-confirm" onclick="startConfirm()">ยืนยัน</a>
+</div>
+
+<div id="confirmModal" class="modal-overlay">
+    <div class="modal-content">
+        <div style="background:#b5835a; width:60px; height:60px; border-radius:50%; color:white; font-size:40px; line-height:60px; margin:0 auto 20px;">?</div>
+        <h3>ยืนยันการสั่งซื้อ</h3>
+        <p style="color:#777;">คุณตรวจสอบข้อมูลครบถ้วนแล้วใช่หรือไม่?</p>
+        <button class="btn-modal btn-back" onclick="closeModal('confirmModal')">กลับไปแก้ไข</button>
+        <button class="btn-modal btn-brown" onclick="showSuccess()">ยืนยันการสั่งซื้อ</button>
+    </div>
+</div>
+
+<div id="successModal" class="modal-overlay">
+    <div class="modal-content">
+        <div style="background:#e8f5e9; width:60px; height:60px; border-radius:50%; color:#4caf50; font-size:40px; line-height:60px; margin:0 auto 20px;">✓</div>
+        <h3>สั่งซื้อเรียบร้อย!</h3>
+        <p style="color:#777;">ขอบคุณที่ไว้วางใจ Heaven Furniture ครับ</p>
+        <button class="btn-modal btn-brown" style="width:100%;" onclick="goToIndex()">กลับไปเลือกซื้อสินค้าต่อ</button>
+    </div>
 </div>
 
 <script>
     window.onload = function() {
         const data = JSON.parse(localStorage.getItem("receiptData"));
-
         if (data) {
             document.getElementById("resNo").innerText = data.orderNo;
             document.getElementById("resDate").innerText = data.date;
-            
-            let fullInfo = data.customerName;
-            let namePart = fullInfo;
-            let addrPart = "-";
-
-            if (fullInfo.includes("(") && fullInfo.includes(")")) {
-                let parts = fullInfo.split("(");
-                namePart = parts[0].trim();
-                addrPart = parts[1].replace(")", "").trim();
-            }
-
-            document.getElementById("resName").innerText = namePart;
-            document.getElementById("resAddr").innerText = addrPart;
-            
+            document.getElementById("resName").innerText = data.customerName.split("(")[0];
+            document.getElementById("resAddr").innerText = data.customerName.includes("(") ? data.customerName.split("(")[1].replace(")","") : "-";
             document.getElementById("resTotal").innerText = Number(data.totalPrice).toLocaleString() + " THB";
-
             let itemsHtml = "";
-            if(data.items && data.items.length > 0) {
-                data.items.forEach(item => {
-                    itemsHtml += `
-                    <div class="item-row">
-                        <span>${item.name} (x${item.qty})</span>
-                        <span style="font-weight:600;">${Number(item.price).toLocaleString()}</span>
-                    </div>`;
-                });
-            } else {
-                itemsHtml = "<div style='text-align:center; color:#999;'>ไม่พบรายการสินค้า</div>";
-            }
-            
+            data.items.forEach(item => {
+                itemsHtml += `<div class="item-row"><span>${item.name} (x${item.qty})</span><b>${Number(item.price).toLocaleString()}</b></div>`;
+            });
             document.getElementById("resItems").innerHTML = itemsHtml;
-            
-        } else {
-            document.querySelector(".receipt-box").innerHTML = `
-                <div style="text-align:center; padding:20px; color:#888;">
-                    ไม่พบข้อมูลการสั่งซื้อ
-                </div>`;
         }
     };
 
-    function clearData() {
-   
-        localStorage.removeItem("receiptData");
-    }
+    function startConfirm() { document.getElementById('confirmModal').style.display = 'flex'; }
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+    function showSuccess() { closeModal('confirmModal'); document.getElementById('successModal').style.display = 'flex'; }
+    function goToIndex() { localStorage.removeItem("receiptData"); window.location.href = "index.html"; }
 </script>
-
 </body>
 </html>
