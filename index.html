@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+
 body {
     background: url("banner 2/bg.png") no-repeat fixed center;
     background-size: cover;
@@ -17,7 +18,11 @@ body {
     color: #333;
 }
 
-.wrapper { max-width: 1600px; margin: 0 auto; text-align: center; }
+.wrapper {
+    max-width: 1600px;
+    margin: 0 auto;
+    text-align: center;
+}
 
 .top-banner {
     border-radius: 28px;
@@ -44,7 +49,7 @@ body {
     width: 1534px;
     margin: 40px auto;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr); 
     gap: 30px;
     padding: 0 10px;
     box-sizing: border-box;
@@ -57,7 +62,7 @@ body {
     position: relative;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     transition: all 0.3s ease;
-    height: 450px;
+    height: 450px; 
     display: flex;
     flex-direction: column;
 }
@@ -82,17 +87,21 @@ body {
     max-width: 90%;
     max-height: 90%;
     object-fit: contain;
-    mix-blend-mode: multiply;
+    mix-blend-mode: multiply; 
     transition: transform 0.5s ease;
 }
 
-.product-card:hover .product-img { transform: scale(1.1); }
+.product-card:hover .product-img {
+    transform: scale(1.1);
+}
 
 .overlay-actions {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -105,7 +114,9 @@ body {
     text-align: center;
 }
 
-.product-card:hover .overlay-actions { opacity: 1; }
+.product-card:hover .overlay-actions {
+    opacity: 1; 
+}
 
 .product-desc {
     color: white;
@@ -145,8 +156,18 @@ body {
     justify-content: space-between;
 }
 
-.product-name { font-size: 18px; font-weight: 600; margin-bottom: 5px; }
-.product-price { font-size: 20px; color: #b5835a; font-weight: 700; }
+.product-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.product-price {
+    font-size: 20px;
+    color: #b5835a;
+    font-weight: 700;
+}
 
 .contact-banner {
     border-radius: 28px;
@@ -160,15 +181,32 @@ body {
     transform: scale(1.02);
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
+
+#miniCart { 
+    display: none;
+}
 </style>
 
-<script>
+<script type="text/javascript">
 var clickSound = new Audio('computer-mouse-click-352734.mp3');
 
 function playClick() {
     clickSound.currentTime = 0;
     clickSound.play();
 }
+
+function MM_swapImgRestore(){var i,x,a=document.MM_sr;for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++)x.src=x.oSrc;}
+function MM_preloadImages(){var d=document;if(d.images){if(!d.MM_p)d.MM_p=new Array();
+var i,j=d.MM_p.length,a=MM_preloadImages.arguments;for(i=0;i<a.length;i++)
+if(a[i].indexOf("#")!=0){d.MM_p[j]=new Image;d.MM_p[j++].src=a[i];}}}
+function MM_findObj(n,d){var p,i,x;if(!d)d=document;if((p=n.indexOf("?"))>0&&parent.frames.length){
+d=parent.frames[n.substring(p+1)].document;n=n.substring(0,p);}
+if(!(x=d[n])&&d.all)x=d.all[n];for(i=0;!x&&i<d.forms.length;i++)x=d.forms[i][n];
+for(i=0;!x&&d.layers&&i<d.layers.length;i++)x=MM_findObj(n,d.layers[i].document);
+if(!x&&d.getElementById)x=d.getElementById(n);return x;}
+function MM_swapImage(){var i,j=0,x,a=MM_swapImage.arguments;document.MM_sr=new Array;
+for(i=0;i<(a.length-2);i+=3)
+if((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x;if(!x.oSrc)x.oSrc=x.src;x.src=a[i+2];}}
 
 function buyNow(name, price, img) {
     playClick();
@@ -177,33 +215,123 @@ function buyNow(name, price, img) {
 }
 
 function addToCart(name, price, img){
-    playClick();
+    playClick(); 
     let list = JSON.parse(localStorage.getItem("cart")||"[]");
     let found = list.find(p => p.name === name);
-    if(found){ found.qty += 1; }
-    else { list.push({name, price, img, qty:1}); }
+    if(found){ found.qty += 1; } else { list.push({name, price, img, qty:1}); }
     localStorage.setItem("cart", JSON.stringify(list));
 }
 
 function addToFavorite(name, price, img){
-    playClick();
+    playClick(); 
     let list = JSON.parse(localStorage.getItem("favorites") || "[]");
-    if(!list.some(p => p.name === name)) {
-        list.push({ name, price, img });
-    }
+    if(!list.some(p => p.name === name)) { list.push({ name: name, price: price, img: img }); }
     localStorage.setItem("favorites", JSON.stringify(list));
+    setTimeout(() => { window.location.href = "Favorites.html"; }, 500);
 }
 </script>
 </head>
 
-<body>
+<body onLoad="MM_preloadImages('banner 2/home2.1.png','banner 2/home5.1.png','banner 2/home3.1.png','banner 2/home4.1.png','banner 2/home6/1.png','banner 2/home7/1.png','banner 2/home8/1.png','banner 2/home9/1.png','banner 2/home10/1.png')">
+
+<div id="miniCart"></div>
 
 <div class="wrapper">
 
-<header>
-<img class="top-banner" src="bannerrrrrrrrrrrrrrrrrrrrrrrrr33/heaven furniture.png" width="1605" height="200">
-</header>
+  <header>
+    <img class="top-banner" src="bannerrrrrrrrrrrrrrrrrrrrrrrrr33/heaven furniture.png" width="1605" height="200">
+  </header>
 
+  <table width="1534" border="0" class="nav-menu">
+    <tr>
+      <td width="155"><img src="banner 2/home1.1.png" width="155" height="40"></td>
+      <td width="155"><a href="Search.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image4','','banner 2/home5.1.png',1)"><img src="banner 2/home5.png" width="155" height="40" id="Image4"></a></td>
+      <td width="155"><a href="Product.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image3','','banner 2/home2.1.png',1)"><img src="banner 2/home2.png" width="155" height="40" id="Image3"></a></td>
+      <td width="155"><a href="Recommended products.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image5','','banner 2/home3.1.png',1)"><img src="banner 2/home3.png" width="155" height="40" id="Image5"></a></td>
+      <td width="155"><a href="promotion.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image6','','banner 2/home4.1.png',1)"><img src="banner 2/home4.png" width="155" height="40" id="Image6"></a></td>
+      <td width="155"><a href="Contact.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image7','','banner 2/home6/1.png',1)"><img src="banner 2/home6/2.png" width="155" height="40" id="Image7"></a></td>
+      <td width="155"><a href="profile.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image8','','banner 2/home7/1.png',1)"><img src="banner 2/home7/2.png" width="155" height="40" id="Image8"></a></td>
+      <td width="155"><a href="Favorites.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image9','','banner 2/home8/1.png',1)"><img src="banner 2/home8/2.png" width="155" height="40" id="Image9"></a></td>
+      <td width="155"><a href="shopping cart.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image10','','banner 2/home9/1.png',1)"><img src="banner 2/home9/2.png" width="155" height="40" id="Image10"></a></td>
+      <td width="75"><a href="payment.html" onMouseOver="MM_swapImage('Image11','','banner 2/home10/1.png',1)" onMouseOut="MM_swapImgRestore()"><img src="banner 2/home10/2.png" width="155" height="40" id="Image11"></a></td>
+    </tr>
+  </table>
+
+  <div class="product-showcase">
+    
+    <div class="product-card">
+      <div class="img-wrapper">
+        <img class="product-img" src="สินค้า/โซฟาห้องนั่งเล่น.png" alt="โซฟาห้องนั่งเล่น">
+        
+        <div class="overlay-actions">
+            <div class="product-desc">โซฟาดีไซน์นอร์ดิก นั่งสบาย<br>เหมาะสำหรับห้องรับแขก</div>
+            <div class="action-btn btn-buy" onclick="buyNow('โซฟาห้องนั่งเล่น','1999','สินค้า/โซฟาห้องนั่งเล่น.png')">ซื้อทันที</div>
+            <div class="action-btn btn-cart" onclick="addToCart('โซฟาห้องนั่งเล่น','1999','สินค้า/โซฟาห้องนั่งเล่น.png')">ใส่ตะกร้า</div>
+            <div class="action-btn btn-fav" onclick="addToFavorite('โซฟาห้องนั่งเล่น','1999','สินค้า/โซฟาห้องนั่งเล่น.png')">❤ ถูกใจ</div>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">โซฟาห้องนั่งเล่น</div>
+        <div class="product-price">1,999 THB</div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="img-wrapper">
+        <img class="product-img" src="สินค้า/เก้าอี้โยก.png" alt="เก้าอี้โยก">
+
+        <div class="overlay-actions">
+            <div class="product-desc">เก้าอี้โยกไม้จริง แข็งแรง<br>ผ่อนคลายทุกอิริยาบถ</div>
+            <div class="action-btn btn-buy" onclick="buyNow('เก้าอี้โยก','999','สินค้า/เก้าอี้โยก.png')">ซื้อทันที</div>
+            <div class="action-btn btn-cart" onclick="addToCart('เก้าอี้โยก','999','สินค้า/เก้าอี้โยก.png')">ใส่ตะกร้า</div>
+            <div class="action-btn btn-fav" onclick="addToFavorite('เก้าอี้โยก','999','สินค้า/เก้าอี้โยก.png')">❤ ถูกใจ</div>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">เก้าอี้โยก</div>
+        <div class="product-price">999 THB</div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="img-wrapper">
+        <img class="product-img" src="สินค้า/เก้าอี้ไม้.png" alt="เก้าอี้ไม้">
+
+        <div class="overlay-actions">
+            <div class="product-desc">เก้าอี้ไม้สไตล์มินิมอล<br>เข้าได้กับทุกมุมบ้าน</div>
+            <div class="action-btn btn-buy" onclick="buyNow('เก้าอี้ไม้','499','สินค้า/เก้าอี้ไม้.png')">ซื้อทันที</div>
+            <div class="action-btn btn-cart" onclick="addToCart('เก้าอี้ไม้','499','สินค้า/เก้าอี้ไม้.png')">ใส่ตะกร้า</div>
+            <div class="action-btn btn-fav" onclick="addToFavorite('เก้าอี้ไม้','499','สินค้า/เก้าอี้ไม้.png')">❤ ถูกใจ</div>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">เก้าอี้ไม้</div>
+        <div class="product-price">499 THB</div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="img-wrapper">
+        <img class="product-img" src="สินค้า/ตู้เสื้อผ้า.png" alt="ตู้เสื้อผ้า">
+
+        <div class="overlay-actions">
+            <div class="product-desc">ตู้เสื้อผ้าดีไซน์ทันสมัย<br>จุของได้เยอะ แข็งแรงทนทาน</div>
+            <div class="action-btn btn-buy" onclick="buyNow('ตู้เสื้อผ้า','4990','สินค้า/ตู้เสื้อผ้า.png')">ซื้อทันที</div>
+            <div class="action-btn btn-cart" onclick="addToCart('ตู้เสื้อผ้า','4990','สินค้า/ตู้เสื้อผ้า.png')">ใส่ตะกร้า</div>
+            <div class="action-btn btn-fav" onclick="addToFavorite('ตู้เสื้อผ้า','4990','สินค้า/ตู้เสื้อผ้า.png')">❤ ถูกใจ</div>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">ตู้เสื้อผ้า</div>
+        <div class="product-price">4,990 THB</div>
+      </div>
+    </div>
+
+  </div>
+
+  <a href="Contact.html">
+    <img class="contact-banner" src="banner 2/คอนแท้ค.png" alt="Contact Us">
+  </a>
 
 </div>
 
