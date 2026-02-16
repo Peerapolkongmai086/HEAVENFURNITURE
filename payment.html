@@ -185,10 +185,7 @@ body {
     position: relative;
     overflow: hidden;
     border: 1px solid #117e28;
-    animation: fadeIn 0.5s;
 }
-
-@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
 .bank-card h3 { margin: 0 0 10px 0; font-size: 18px; }
 .bank-logo {
@@ -218,79 +215,6 @@ textarea.form-control { resize: vertical; min-height: 80px; }
 }
 .btn-confirm:hover { background: #a0724e; transform: translateY(-2px); }
 
-.modal-overlay {
-    display: none;
-    position: fixed;
-    z-index: 10000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.6);
-    backdrop-filter: blur(4px);
-    justify-content: center;
-    align-items: center;
-    font-family: 'Prompt', sans-serif;
-}
-
-.modal-box {
-    background-color: #fff;
-    margin: auto;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-    position: relative;
-    animation: zoomIn 0.3s ease;
-    border-top: 8px solid #b5835a;
-}
-
-@keyframes zoomIn {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-.modal-icon-bounce {
-    font-size: 60px;
-    color: #b5835a;
-    margin-bottom: 20px;
-    display: block;
-    animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-  40% {transform: translateY(-10px);}
-  60% {transform: translateY(-5px);}
-}
-
-.modal-title { font-size: 22px; font-weight: bold; color: #333; margin-bottom: 10px; }
-.modal-text { font-size: 16px; color: #666; margin-bottom: 25px; line-height: 1.5; }
-
-.modal-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-.btn-modal-cancel {
-    background: #fff; border: 2px solid #ddd; color: #666;
-    padding: 10px 25px; border-radius: 30px; font-weight: bold; cursor: pointer;
-    transition: 0.2s; font-family: 'Prompt', sans-serif; font-size: 16px;
-}
-.btn-modal-cancel:hover { background: #f0f0f0; border-color: #ccc; }
-
-.btn-modal-confirm {
-    background: #b5835a; border: 2px solid #b5835a; color: white;
-    padding: 10px 30px; border-radius: 30px; font-weight: bold; cursor: pointer;
-    transition: 0.2s; font-family: 'Prompt', sans-serif; font-size: 16px;
-    box-shadow: 0 4px 10px rgba(181, 131, 90, 0.3);
-}
-.btn-modal-confirm:hover { background: #a0724e; transform: translateY(-2px); }
-
 </style>
 
 <script type="text/javascript">
@@ -303,19 +227,6 @@ function MM_swapImage() { var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=n
 </head>
 
 <body onLoad="MM_preloadImages('banner 2/home1.1.png','banner 2/home5.1.png','banner 2/home2.1.png','banner 2/home3.1.png','banner 2/home4.1.png','banner 2/home6/1.png','banner 2/home7/1.png','banner 2/home8/1.png','banner 2/home9/1.png')">
-
-<div id="customConfirmModal" class="modal-overlay">
-  <div class="modal-box">
-    <i class="fas fa-question-circle modal-icon-bounce"></i>
-    <div class="modal-title">ยืนยันการสั่งซื้อ</div>
-    <div class="modal-text">คุณตรวจสอบข้อมูลครบถ้วน<br>และต้องการยืนยันการสั่งซื้อนี้จริงๆ หรือไม่?</div>
-    
-    <div class="modal-buttons">
-      <button class="btn-modal-cancel" onclick="closeConfirmModal()">กลับไปแก้ไข</button>
-      <button class="btn-modal-confirm" onclick="confirmOrderProcess()">ยืนยันการสั่งซื้อ</button>
-    </div>
-  </div>
-</div>
 
 <div class="wrapper">
 
@@ -474,7 +385,7 @@ function cancelOrder(){
     }
 }
 
-function openConfirmModal(e) {
+function confirmOrderProcess(e) {
     e.preventDefault();
 
     if(document.getElementById("displayPrice").innerText == "0") return;
@@ -484,17 +395,6 @@ function openConfirmModal(e) {
         form.reportValidity();
         return;
     }
-
-    var modal = document.getElementById("customConfirmModal");
-    modal.style.display = "flex";
-}
-
-function closeConfirmModal() {
-    document.getElementById("customConfirmModal").style.display = "none";
-}
-
-function confirmOrderProcess() {
-    closeConfirmModal();
 
     var orderItems = [];
     var total = 0;
@@ -537,14 +437,8 @@ function confirmOrderProcess() {
 
 loadOrderData();
 
-document.getElementById("payForm").onsubmit = openConfirmModal;
+document.getElementById("payForm").onsubmit = confirmOrderProcess;
 
-window.onclick = function(event) {
-  var modal = document.getElementById("customConfirmModal");
-  if (event.target == modal) {
-    closeConfirmModal();
-  }
-}
 </script>
 
 </body>
