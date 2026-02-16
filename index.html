@@ -136,8 +136,6 @@ body {
     width: 100%;
     max-width: 1400px;
 }
-
-#miniCart { display: none; }
 </style>
 
 <script type="text/javascript">
@@ -164,7 +162,7 @@ if((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x;if(!x.oSrc)x.oSrc=x.src;x.s
 function buyNow(name, price, img) {
     playClick();
     localStorage.setItem("checkoutItem", JSON.stringify({ name, price, img }));
-    setTimeout(() => { window.location.href = "payment.html"; }, 500);
+    setTimeout(() => { window.location.href = "payment.html"; }, 300);
 }
 
 function addToCart(name, price, img){
@@ -213,7 +211,6 @@ function addToFavorite(name, price, img){
   </table>
 
   <div class="product-showcase">
-    
     <div class="product-card">
       <div class="img-wrapper">
         <img class="product-img" src="สินค้า/โซฟาห้องนั่งเล่น.png" alt="โซฟาห้องนั่งเล่น">
@@ -277,13 +274,11 @@ function addToFavorite(name, price, img){
         </div>
       </div>
     </div>
-
   </div>
 
   <a href="Contact.html">
     <img class="contact-banner" src="banner 2/คอนแท้ค.png" alt="Contact Us">
   </a>
-
 </div>
 </body>
 </html>
