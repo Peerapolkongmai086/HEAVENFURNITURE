@@ -57,12 +57,6 @@ body {
     text-shadow: 0 2px 4px rgba(255,255,255,0.5);
 }
 
-.section-subtitle {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 40px;
-}
-
 .contact-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -81,11 +75,9 @@ body {
     border: 1px solid rgba(255,255,255,0.8);
     position: relative;
     overflow: hidden;
-    opacity: 1;
 }
 
 .contact-card:hover {
-    transform: translateY(-8px);
     box-shadow: 0 15px 35px rgba(0,0,0,0.15);
     background: white;
 }
@@ -127,18 +119,6 @@ body {
     letter-spacing: 0.5px;
 }
 
-a.card-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-
-.support-mascot {
-    margin-top: 50px;
-    width: 200px;
-    opacity: 0.9;
-}
-
 </style>
 
 <script type="text/javascript">
@@ -175,20 +155,17 @@ function MM_swapImage() { var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=n
   <div class="contact-section">
     <div class="section-title">ช่องทางการติดต่อ</div>
     
-
     <div class="contact-grid">
         
-        <a href="https://www.facebook.com" target="_blank" class="card-link">
-            <div class="contact-card">
-                <div class="icon-box bg-facebook">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </div>
-                <div class="info-content">
-                    <div class="info-label">Facebook Page</div>
-                    <div class="info-value">HEAVEN FURNITUURE</div>
-                </div>
+        <div class="contact-card">
+            <div class="icon-box bg-facebook">
+                <i class="fa-brands fa-facebook-f"></i>
             </div>
-        </a>
+            <div class="info-content">
+                <div class="info-label">Facebook Page</div>
+                <div class="info-value">HEAVEN FURNITUURE</div>
+            </div>
+        </div>
 
         <div class="contact-card">
             <div class="icon-box bg-phone">
@@ -200,17 +177,15 @@ function MM_swapImage() { var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=n
             </div>
         </div>
 
-        <a href="https://www.instagram.com" target="_blank" class="card-link">
-            <div class="contact-card">
-                <div class="icon-box bg-instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </div>
-                <div class="info-content">
-                    <div class="info-label">Instagram</div>
-                    <div class="info-value">HEAVEN_FURNITUURE</div>
-                </div>
+        <div class="contact-card">
+            <div class="icon-box bg-instagram">
+                <i class="fa-brands fa-instagram"></i>
             </div>
-        </a>
+            <div class="info-content">
+                <div class="info-label">Instagram</div>
+                <div class="info-value">HEAVEN_FURNITUURE</div>
+            </div>
+        </div>
 
         <div class="contact-card">
             <div class="icon-box bg-email">
@@ -224,13 +199,9 @@ function MM_swapImage() { var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=n
 
     </div>
 
-   
-
   </div>
 
 </div>
 
 </body>
 </html>
-
-
