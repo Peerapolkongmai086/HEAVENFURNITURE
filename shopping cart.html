@@ -6,7 +6,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-
 body {
     background: url("banner 2/bg.png") no-repeat fixed center;
     background-size: cover;
@@ -130,40 +129,7 @@ body {
     color: #b5835a;
     font-size: 20px;
     font-weight: bold;
-    margin-bottom: 15px;
-}
-
-.qty-wrapper {
-    display: flex;
-    align-items: center;
-    background: #f5f5f5;
-    border-radius: 25px;
-    padding: 5px;
     margin-bottom: 10px;
-}
-
-.qty-btn {
-    width: 30px;
-    height: 30px;
-    border: none;
-    background: white;
-    border-radius: 50%;
-    cursor: pointer;
-    font-weight: bold;
-    color: #555;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: 0.2s;
-}
-.qty-btn:hover { background: #b5835a; color: white; }
-
-.qty-input {
-    width: 40px;
-    text-align: center;
-    border: none;
-    background: transparent;
-    font-weight: bold;
-    font-size: 16px;
-    font-family: 'Prompt', sans-serif;
 }
 
 .summary-section {
@@ -245,7 +211,6 @@ function loadCart(){
   box.innerHTML = "";
   
   if(cart.length === 0){
-    
     box.innerHTML = `
       <div class="empty-cart-box">
         <div style="font-size: 60px; margin-bottom:10px;">🛒</div>
@@ -261,11 +226,10 @@ function loadCart(){
   let total = 0;
 
   cart.forEach((item, index) => {
-    
     let priceStr = item.price.toString().replace(/,/g, '');
     let priceNum = parseFloat(priceStr) || 0;
     
-    total += priceNum * item.qty;
+    total += priceNum * (item.qty || 1);
     
     box.innerHTML += `
       <div class="cart-card">
@@ -273,25 +237,11 @@ function loadCart(){
         <img src="${item.img}">
         <div class="cart-title">${item.name}</div>
         <div class="cart-price">฿${priceNum.toLocaleString()}</div>
-        
-        <div class="qty-wrapper">
-          <button class="qty-btn" onclick="updateQty(${index}, -1)">-</button>
-          <input type="text" class="qty-input" value="${item.qty}" readonly>
-          <button class="qty-btn" onclick="updateQty(${index}, 1)">+</button>
-        </div>
       </div>
     `;
   });
   
   totalPriceEl.innerText = "฿" + total.toLocaleString();
-}
-
-function updateQty(index, change){
-  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
-  cart[index].qty += change;
-  if(cart[index].qty < 1) cart[index].qty = 1;
-  localStorage.setItem("cart", JSON.stringify(cart));
-  loadCart();
 }
 
 function removeItem(index){
@@ -304,7 +254,6 @@ function removeItem(index){
 }
 
 function goToPayment(){
-    
     localStorage.removeItem("checkoutItem");
     window.location.href = 'payment.html';
 }
@@ -341,7 +290,7 @@ function initPage(){
   <div class="cart-section">
     <div class="cart-header">
         <h2>🛒 รายการสินค้าในตะกร้า</h2>
-        <p>ตรวจสอบรายการสินค้าและจำนวนที่ต้องการก่อนชำระเงิน</p>
+        <p>ตรวจสอบรายการสินค้าก่อนชำระเงิน</p>
     </div>
 
     <div id="cartList" class="cart-grid"></div>
